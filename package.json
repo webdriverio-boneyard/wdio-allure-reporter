@@ -1,5 +1,5 @@
 {
-  "name": "wdio-allure-reporter",
+  "name": "@georgecrawfordft/wdio-allure-reporter",
   "version": "0.0.0",
   "description": "A WebdriverIO plugin. Report results in Allure format.",
   "main": "build/reporter.js",
