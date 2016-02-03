@@ -35,7 +35,7 @@
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-core": "^5.8.23",
-    "babel-eslint": "^4.1.1",
+    "babel-eslint": "^4.1.7",
     "babel-istanbul": "^0.4.1",
     "babel-plugin-rewire": "^0.1.22",
     "babel-runtime": "^5.8.25",
