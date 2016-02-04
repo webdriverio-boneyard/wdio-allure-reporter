@@ -4,8 +4,7 @@
   "description": "A WebdriverIO plugin. Report results in Allure format.",
   "main": "build/reporter.js",
   "scripts": {
-    "test": "grunt",
-    "build": "grunt build",
+    "build": "grunt",
     "prepublish": "npm prune && npm run build"
   },
   "repository": {
