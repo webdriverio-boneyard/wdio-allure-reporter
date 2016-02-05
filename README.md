@@ -27,7 +27,7 @@ Jenkins will then offer a link to the results from the build status page:
 ![screenshot 2016-02-05 10.12.08.png](./docs/images/jenkins-results.png)
 
 ### Command-line
-Install the [Allure command-line tool](http://wiki.qatools.ru/display/AL/Allure+Commandline), and process the results directory:
+Install the [Allure command-line tool](https://www.npmjs.com/package/allure-commandline), and process the results directory:
 ```bash
 allure generate [allure_output_dir] && allure report open
 ```
