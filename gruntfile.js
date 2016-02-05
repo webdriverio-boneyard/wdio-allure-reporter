@@ -19,19 +19,6 @@ module.exports = function (grunt) {
                 }]
             }
         },
-        mocha_istanbul: {
-            coverage: {
-                src: ['test/*.js'],
-                options: {
-                    reporter: 'spec',
-                    require: [
-                        'should',
-                        './test/bootstrap'
-                    ],
-                    scriptPath: path.join(__dirname, 'node_modules', 'babel-istanbul', 'lib', 'cli')
-                }
-            }
-        },
         eslint: {
             options: {
                 parser: 'babel-eslint'
@@ -58,7 +45,7 @@ module.exports = function (grunt) {
     })
 
     require('load-grunt-tasks')(grunt)
-    grunt.registerTask('default', ['eslint', 'build', 'mocha_istanbul'])
+    grunt.registerTask('default', ['eslint', 'build'])
     grunt.registerTask('build', 'Build wdio-allure-reporter', function () {
         grunt.task.run([
             'clean',
