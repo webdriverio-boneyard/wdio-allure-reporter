@@ -1,6 +1,6 @@
 {
   "name": "wdio-allure-reporter",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A WebdriverIO plugin. Report results in Allure format.",
   "main": "build/reporter.js",
   "scripts": {
@@ -61,6 +61,7 @@
   "contributors": [
     "christian-bromann <contact@christian-bromann.com>",
     "Christian Bromann <github@christian-bromann.com>",
+    "Stefan Grönke <stefan@gronke.net>",
     "George Crawford <g.o.crawford@gmail.com>"
   ]
 }
