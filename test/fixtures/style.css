@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#clickable, #unclickable, #overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: hidden;
+}
+
+#unclickable {
+  left: 0;
+  z-index: 10;
+  background: yellow;
+}
+
+#clickable {
+  right: 0;
+  z-index: 30;
+  background: red;
+}
+
+#overlay {
+  position: absolute;
+  z-index: 20;
+  background: blue;
+  opacity: 0.5;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

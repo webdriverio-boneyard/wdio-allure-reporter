@@ -3,7 +3,10 @@ var path = require('path')
 module.exports = function (grunt) {
     grunt.initConfig({
         pkgFile: 'package.json',
-        clean: ['build'],
+        clean: {
+            default: ['build'],
+            test: ['allure-results']
+        },
         babel: {
             options: {
                 sourceMap: false,
@@ -41,6 +44,25 @@ module.exports = function (grunt) {
                 files: './lib/**/*.js',
                 tasks: ['babel:dist']
             }
+        },
+        connect: {
+            server: {
+                options: {
+                    port: process.env.PORT || 8090,
+                    hostname: '127.0.0.1',
+                    base: './test/fixtures'
+                }
+            }
+        },
+        mochaTest: {
+            test: {
+                options: {
+                    reporter: 'spec',
+                    quiet: false,
+                    timeout: 8000
+                },
+                src: ['test/runner.js']
+            }
         }
     })
 
@@ -59,4 +81,13 @@ module.exports = function (grunt) {
             'bump:' + (type || 'patch')
         ])
     })
+    grunt.registerTask('test', 'Unit Tests', [
+        'selenium_start',
+        'connect',
+        'mochaTest',
+        'selenium_stop'
+    ])
+    grunt.registerTask('serve', [
+        'connect:keepalive'
+    ])
 }

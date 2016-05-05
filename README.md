@@ -61,3 +61,11 @@ This will generate a report (by default in `./allure-report`), and open it in yo
 ----
 
 For more information on WebdriverIO see the [homepage](http://webdriver.io).
+
+## Development
+
+### Unit Test
+Unit Tests are running webdriverio multiple times using the wdio-allure-reporter and verifying the output.
+```
+grunt test
+```
