@@ -12,39 +12,38 @@ let resultsDir = path.join(__dirname, '../allure-results')
 
 describe('"before all" hook', () => {
 
-  beforeEach(() => {
-    clean()
-  })
+  beforeEach(clean)
 
   it('should not show up in the results when it is passing', () => {
 
     return run(['before-all-passing']).then((code) => {
 
-      return getResultsXML()
-        .then((results) => {
+      expect(code).to.equal(0)
+      return getResultsXML();
+      
+    })
+    .then((results) => {
 
-          expect(results).to.have.lengthOf(1)
-          expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
-          
-          results[0]['ns2:test-suite']['test-cases'][0]['test-case']
-            .forEach((testCase) => {
+      expect(results).to.have.lengthOf(1)
+      expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
+      
+      results[0]['ns2:test-suite']['test-cases'][0]['test-case']
+        .forEach((testCase) => {
 
-              switch(testCase.name[0]) {
+          switch(testCase.name[0]) {
 
-                case '"before" hook':
-                case '"before all" hook':
-                case '"before each" hook':
-                case '"after all" hook':
-                case '"after each" hook':
-                  throw new Error('\'' + testCase.name + '\' was not expected in the results when no hook fails')
-                  break
+            case '"before" hook':
+            case '"before all" hook':
+            case '"before each" hook':
+            case '"after all" hook':
+            case '"after each" hook':
+              throw new Error('\'' + testCase.name + '\' was not expected in the results when no hook fails')
+              break
 
-              }
-
-            })
+          }
 
         })
-      
+
     })
 
   })
@@ -53,37 +52,39 @@ describe('"before all" hook', () => {
 
     return run(['before-all-failing']).then((code) => {
 
-      return getResultsXML()
-        .then((results) => {
+      expect(code).to.equal(0)
+      return getResultsXML();
 
-          expect(results).to.have.lengthOf(1)
-          expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
-          
-          let isBeforeAllHookBroken = false
+    })
+    .then((results) => {
 
-          results[0]['ns2:test-suite']['test-cases'][0]['test-case']
-            .forEach((testCase) => {
+      expect(results).to.have.lengthOf(1)
+      expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
+      
+      let isBeforeAllHookBroken = false
 
-              switch(testCase.name[0]) {
+      results[0]['ns2:test-suite']['test-cases'][0]['test-case']
+        .forEach((testCase) => {
 
-                case '"before" hook':
-                case '"before each" hook':
-                case '"after all" hook':
-                case '"after each" hook':
-                  throw new Error('\'' + testCase.name + '\' was not expected in the results when no hook fails')
-                  break
+          switch(testCase.name[0]) {
 
-                case '"before all" hook':
-                  isBeforeAllHookBroken = (testCase.$.status === 'broken')
-                  break;
+            case '"before" hook':
+            case '"before each" hook':
+            case '"after all" hook':
+            case '"after each" hook':
+              throw new Error('\'' + testCase.name + '\' was not expected in the results when no hook fails')
+              break
 
-              }
+            case '"before all" hook':
+              isBeforeAllHookBroken = (testCase.$.status === 'broken')
+              break;
 
-            })
-
-          expect(isBeforeAllHookBroken).to.be.true
+          }
 
         })
+
+      expect(isBeforeAllHookBroken).to.be.true
+
     })
 
   })
@@ -92,8 +93,11 @@ describe('"before all" hook', () => {
 
     return run(['before-all-failing-async']).then((code) => {
 
+      expect(code).to.equal(0)
       return getResultsXML()
-        .then((results) => {
+
+    })
+    .then((results) => {
 
           expect(results).to.have.lengthOf(1)
           expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
@@ -123,8 +127,6 @@ describe('"before all" hook', () => {
           expect(isBeforeAllHookBroken).to.be.true
 
         })
-
-    })
 
   })
 
@@ -154,7 +156,7 @@ function getResults() {
     })
 }
 
-function clean(done) {
+function clean() {
   return new Promise((resolve, reject) => {
     rimraf(resultsDir, (err) => {
       if(err) {
