@@ -177,8 +177,10 @@ function run(specs) {
     specs: specs
   })
 
-  return launcher.run()
-    .then(enableOutput)
+  let out = launcher.run()
+  out.then(enableOutput)
+
+  return out
 
 }
 
