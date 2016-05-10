@@ -18,7 +18,7 @@ describe('"before all" hook', () => {
 
     return run(['before-all-passing']).then((code) => {
 
-      expect(code).to.equal(0)
+      expect(code, 'wrong exit status code').to.equal(0)
       return getResultsXML();
       
     })
@@ -27,22 +27,9 @@ describe('"before all" hook', () => {
       expect(results).to.have.lengthOf(1)
       expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
       
-      results[0]['ns2:test-suite']['test-cases'][0]['test-case']
-        .forEach((testCase) => {
-
-          switch(testCase.name[0]) {
-
-            case '"before" hook':
-            case '"before all" hook':
-            case '"before each" hook':
-            case '"after all" hook':
-            case '"after each" hook':
-              throw new Error('\'' + testCase.name + '\' was not expected in the results when no hook fails')
-              break
-
-          }
-
-        })
+      const hookNames = ['before', 'before all', 'before each', 'after all', 'after each'].map(hookName => '"' + hookName + '" hook');
+      const hookErrors = results[0]['ns2:test-suite']['test-cases'][0]['test-case'].filter(testCase => hookNames.indexOf(testCase.name[0]) > -1)
+      expect(hookErrors, 'there should not be any hooks').to.be.empty()
 
     })
 
@@ -52,7 +39,7 @@ describe('"before all" hook', () => {
 
     return run(['before-all-failing']).then((code) => {
 
-      expect(code).to.equal(0)
+      expect(code, 'wrong exit status code').to.equal(1)
       return getResultsXML();
 
     })
@@ -61,29 +48,13 @@ describe('"before all" hook', () => {
       expect(results).to.have.lengthOf(1)
       expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
       
-      let isBeforeAllHookBroken = false
+      const hookNames = ['before', 'before each', 'after all', 'after each'].map(hookName => '"' + hookName + '" hook')
 
-      results[0]['ns2:test-suite']['test-cases'][0]['test-case']
-        .forEach((testCase) => {
+      const hookErrors = results[0]['ns2:test-suite']['test-cases'][0]['test-case'].filter(testCase => hookNames.indexOf(testCase.name[0]) > -1)
+      expect(hookErrors, 'there should only be the "before all" hook').to.be.empty()
 
-          switch(testCase.name[0]) {
-
-            case '"before" hook':
-            case '"before each" hook':
-            case '"after all" hook':
-            case '"after each" hook':
-              throw new Error('\'' + testCase.name + '\' was not expected in the results when no hook fails')
-              break
-
-            case '"before all" hook':
-              isBeforeAllHookBroken = (testCase.$.status === 'broken')
-              break;
-
-          }
-
-        })
-
-      expect(isBeforeAllHookBroken).to.be.true
+      const beforeAllHook = results[0]['ns2:test-suite']['test-cases'][0]['test-case'].filter(testCase => hookNames.indexOf(testCase.name[0]) === -1)[0]
+      expect(beforeAllHook, '"before all" hook should be broken').to.have.deep.property('$.status', 'broken')
 
     })
 
@@ -93,40 +64,24 @@ describe('"before all" hook', () => {
 
     return run(['before-all-failing-async']).then((code) => {
 
-      expect(code).to.equal(0)
+      expect(code, 'wrong exit status code').to.equal(1)
       return getResultsXML()
 
     })
     .then((results) => {
 
-          expect(results).to.have.lengthOf(1)
-          expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
+      expect(results).to.have.lengthOf(1)
+      expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
           
-          let isBeforeAllHookBroken = false
+      const hookNames = ['before', 'before each', 'after all', 'after each'].map(hookName => '"' + hookName + '" hook')
 
-          results[0]['ns2:test-suite']['test-cases'][0]['test-case']
-            .forEach((testCase) => {
+      const hookErrors = results[0]['ns2:test-suite']['test-cases'][0]['test-case'].filter(testCase => hookNames.indexOf(testCase.name[0]) > -1)
+      expect(hookErrors, 'there should only be the "before all" hook').to.be.empty()
 
-              switch(testCase.name[0]) {
+      const beforeAllHook = results[0]['ns2:test-suite']['test-cases'][0]['test-case'].filter(testCase => hookNames.indexOf(testCase.name[0]) === -1)[0]
+      expect(beforeAllHook, '"before all" hook should be broken').to.have.deep.property('$.status', 'broken')
 
-                case '"before" hook':
-                case '"before each" hook':
-                case '"after all" hook':
-                case '"after each" hook':
-                  throw new Error('\'' + testCase.name + '\' was not expected in the results when no hook fails')
-                  break
-
-                case '"before all" hook':
-                  isBeforeAllHookBroken = (testCase.$.status === 'broken')
-                  break;
-
-              }
-
-            })
-
-          expect(isBeforeAllHookBroken).to.be.true
-
-        })
+    })
 
   })
 
