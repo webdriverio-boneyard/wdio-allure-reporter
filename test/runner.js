@@ -4,7 +4,7 @@ let fs = require('fs')
 let path = require('path')
 let expect = require('chai').expect
 let rimraf = require('rimraf')
-let Launcher = require('../node_modules/webdriverio/build/lib/launcher.js')
+let Launcher = require('webdriverio/build/lib/launcher')
 let parseXmlString = require('xml2js').parseString
 
 let configFile = './test/fixtures/wdio.conf.js'
@@ -51,73 +51,80 @@ describe('"before all" hook', () => {
 
   it('should marked broken when failing', () => {
 
-    return getResultsXML()
-      .then((results) => {
+    return run(['before-all-failing']).then((code) => {
 
-        expect(results).to.have.lengthOf(1)
-        expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
-        
-        let isBeforeAllHookBroken = false
+      return getResultsXML()
+        .then((results) => {
 
-        results[0]['ns2:test-suite']['test-cases'][0]['test-case']
-          .forEach((testCase) => {
+          expect(results).to.have.lengthOf(1)
+          expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
+          
+          let isBeforeAllHookBroken = false
 
-            switch(testCase.name[0]) {
+          results[0]['ns2:test-suite']['test-cases'][0]['test-case']
+            .forEach((testCase) => {
 
-              case '"before" hook':
-              case '"before each" hook':
-              case '"after all" hook':
-              case '"after each" hook':
-                throw new Error('\'' + testCase.name + '\' was not expected in the results when no hook fails')
-                break
+              switch(testCase.name[0]) {
 
-              case '"before all" hook':
-                isBeforeAllHookBroken = (testCase.$.status === 'broken')
-                break;
+                case '"before" hook':
+                case '"before each" hook':
+                case '"after all" hook':
+                case '"after each" hook':
+                  throw new Error('\'' + testCase.name + '\' was not expected in the results when no hook fails')
+                  break
 
-            }
+                case '"before all" hook':
+                  isBeforeAllHookBroken = (testCase.$.status === 'broken')
+                  break;
 
-          })
+              }
 
-        expect(isBeforeAllHookBroken).to.be.true
+            })
 
-      })
+          expect(isBeforeAllHookBroken).to.be.true
+
+        })
+    })
 
   })
 
   it('should marked broken when failing async', () => {
 
-    return getResultsXML()
-      .then((results) => {
+    return run(['before-all-failing-async']).then((code) => {
 
-        expect(results).to.have.lengthOf(1)
-        expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
-        
-        let isBeforeAllHookBroken = false
+      return getResultsXML()
+        .then((results) => {
 
-        results[0]['ns2:test-suite']['test-cases'][0]['test-case']
-          .forEach((testCase) => {
+          expect(results).to.have.lengthOf(1)
+          expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
+          
+          let isBeforeAllHookBroken = false
 
-            switch(testCase.name[0]) {
+          results[0]['ns2:test-suite']['test-cases'][0]['test-case']
+            .forEach((testCase) => {
 
-              case '"before" hook':
-              case '"before each" hook':
-              case '"after all" hook':
-              case '"after each" hook':
-                throw new Error('\'' + testCase.name + '\' was not expected in the results when no hook fails')
-                break
+              switch(testCase.name[0]) {
 
-              case '"before all" hook':
-                isBeforeAllHookBroken = (testCase.$.status === 'broken')
-                break;
+                case '"before" hook':
+                case '"before each" hook':
+                case '"after all" hook':
+                case '"after each" hook':
+                  throw new Error('\'' + testCase.name + '\' was not expected in the results when no hook fails')
+                  break
 
-            }
+                case '"before all" hook':
+                  isBeforeAllHookBroken = (testCase.$.status === 'broken')
+                  break;
 
-          })
+              }
 
-        expect(isBeforeAllHookBroken).to.be.true
+            })
 
-      })
+          expect(isBeforeAllHookBroken).to.be.true
+
+        })
+
+    })
 
   })
 

@@ -1,4 +1,4 @@
-var path = require('path')
+var fs = require('fs')
 var allureReporter = require('../../build/reporter')
 var argv = require('minimist')(process.argv.slice(2))
 
@@ -7,7 +7,7 @@ allureReporter.reporterName = function(){
 }
 
 exports.config = {
-  baseUrl: 'http://127.0.0.1:' + (process.env.PORT || 8090),
+  baseUrl: 'file:///' + fs.realpathSync(__dirname),
   coloredLogs: true,
   logLevel: 'silent',
   reporters: [allureReporter],

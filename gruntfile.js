@@ -45,15 +45,6 @@ module.exports = function (grunt) {
                 tasks: ['babel:dist']
             }
         },
-        connect: {
-            server: {
-                options: {
-                    port: process.env.PORT || 8090,
-                    hostname: '127.0.0.1',
-                    base: './test/fixtures'
-                }
-            }
-        },
         mochaTest: {
             test: {
                 options: {
@@ -83,11 +74,7 @@ module.exports = function (grunt) {
     })
     grunt.registerTask('test', 'Unit Tests', [
         'selenium_start',
-        'connect',
         'mochaTest',
         'selenium_stop'
-    ])
-    grunt.registerTask('serve', [
-        'connect:keepalive'
     ])
 }
