@@ -72,7 +72,7 @@ module.exports = function (grunt) {
             'bump:' + (type || 'patch')
         ])
     })
-    grunt.registerTask('test', 'Unit Tests', [
+    grunt.registerTask('test', 'Integration Tests', [
         'selenium_start',
         'mochaTest',
         'selenium_stop'
