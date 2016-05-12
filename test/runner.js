@@ -29,7 +29,7 @@ describe('"before all" hook', () => {
       
       const hookNames = ['before', 'before all', 'before each', 'after all', 'after each'].map(hookName => '"' + hookName + '" hook');
       const hookErrors = results[0]['ns2:test-suite']['test-cases'][0]['test-case'].filter(testCase => hookNames.indexOf(testCase.name[0]) > -1)
-      expect(hookErrors, 'there should not be any hooks').to.be.empty()
+      expect(hookErrors, 'there should not be any hooks').to.be.empty
 
     })
 
@@ -51,7 +51,7 @@ describe('"before all" hook', () => {
       const hookNames = ['before', 'before each', 'after all', 'after each'].map(hookName => '"' + hookName + '" hook')
 
       const hookErrors = results[0]['ns2:test-suite']['test-cases'][0]['test-case'].filter(testCase => hookNames.indexOf(testCase.name[0]) > -1)
-      expect(hookErrors, 'there should only be the "before all" hook').to.be.empty()
+      expect(hookErrors, 'there should only be the "before all" hook').to.be.empty
 
       const beforeAllHook = results[0]['ns2:test-suite']['test-cases'][0]['test-case'].filter(testCase => hookNames.indexOf(testCase.name[0]) === -1)[0]
       expect(beforeAllHook, '"before all" hook should be broken').to.have.deep.property('$.status', 'broken')
@@ -76,7 +76,7 @@ describe('"before all" hook', () => {
       const hookNames = ['before', 'before each', 'after all', 'after each'].map(hookName => '"' + hookName + '" hook')
 
       const hookErrors = results[0]['ns2:test-suite']['test-cases'][0]['test-case'].filter(testCase => hookNames.indexOf(testCase.name[0]) > -1)
-      expect(hookErrors, 'there should only be the "before all" hook').to.be.empty()
+      expect(hookErrors, 'there should only be the "before all" hook').to.be.empty
 
       const beforeAllHook = results[0]['ns2:test-suite']['test-cases'][0]['test-case'].filter(testCase => hookNames.indexOf(testCase.name[0]) === -1)[0]
       expect(beforeAllHook, '"before all" hook should be broken').to.have.deep.property('$.status', 'broken')
