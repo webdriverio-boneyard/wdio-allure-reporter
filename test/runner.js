@@ -39,7 +39,7 @@ describe('"before all" hook', () => {
 
     return run(['before-all-failing']).then((code) => {
 
-      expect(code, 'wrong exit status code').to.equal(1)
+      expect(code, 'wrong exit status code').to.be.at.least(1)
       return getResultsXML();
 
     })
@@ -64,7 +64,7 @@ describe('"before all" hook', () => {
 
     return run(['before-all-failing-async']).then((code) => {
 
-      expect(code, 'wrong exit status code').to.equal(1)
+      expect(code, 'wrong exit status code').to.be.at.least(1)
       return getResultsXML()
 
     })
