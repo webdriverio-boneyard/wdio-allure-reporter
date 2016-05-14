@@ -1,25 +1,18 @@
 'use strict'
 
-let fs = require('fs')
-let path = require('path')
 let expect = require('chai').expect
-let rimraf = require('rimraf')
-let Launcher = require('webdriverio/build/lib/launcher')
-let parseXmlString = require('xml2js').parseString
-
-let configFile = './test/fixtures/wdio.conf.js'
-let resultsDir = path.join(__dirname, '../allure-results') 
+let helper = require('./helper')
 
 describe('"before all" hook', () => {
 
-  beforeEach(clean)
+  beforeEach(helper.clean)
 
   it('should not show up in the results when it is passing', () => {
 
-    return run(['before-all-passing']).then((code) => {
+    return helper.run(['before-all-passing']).then((code) => {
 
       expect(code, 'wrong exit status code').to.equal(0)
-      return getResultsXML();
+      return helper.getResultsXML();
       
     })
     .then((results) => {
@@ -37,10 +30,10 @@ describe('"before all" hook', () => {
 
   it('should marked broken when failing', () => {
 
-    return run(['before-all-failing']).then((code) => {
+    return helper.run(['before-all-failing']).then((code) => {
 
       expect(code, 'wrong exit status code').to.be.at.least(1)
-      return getResultsXML();
+      return helper.getResultsXML();
 
     })
     .then((results) => {
@@ -62,10 +55,10 @@ describe('"before all" hook', () => {
 
   it('should marked broken when failing async', () => {
 
-    return run(['before-all-failing-async']).then((code) => {
+    return helper.run(['before-all-failing-async']).then((code) => {
 
       expect(code, 'wrong exit status code').to.be.at.least(1)
-      return getResultsXML()
+      return helper.getResultsXML()
 
     })
     .then((results) => {
@@ -86,66 +79,3 @@ describe('"before all" hook', () => {
   })
 
 })
-
-function getResultsXML() {
-  let promises = getResults().map((result) => {
-    return new Promise((resolve, reject) => {
-      parseXmlString(result, { trim: true }, (err, xmlData) => {
-        if(err) {
-          reject(err)
-        } else {
-          resolve(xmlData);
-        }
-      })
-    })
-  })
-
-  return Promise.all(promises)
-}
-
-function getResults() {
-  return fs.readdirSync(resultsDir)
-    .filter((file) => file.endsWith('.xml'))
-    .map((file) => {
-      return fs.readFileSync(path.join(resultsDir, file))
-    })
-}
-
-function clean() {
-  return new Promise((resolve, reject) => {
-    rimraf(resultsDir, (err) => {
-      if(err) {
-        reject(err)
-      } else {
-        resolve()
-      }
-    })
-  })
-}
-
-function run(specs) {
-
-  disableOutput()
-  specs = specs.map((spec) => './test/fixtures/specs/' + spec + '.js')
-
-  let launcher = new Launcher(configFile, {
-    specs: specs
-  })
-
-  let out = launcher.run()
-  out.then(enableOutput)
-
-  return out
-
-}
-
-console.orig_log = console.log
-console.orig_error = console.error
-function disableOutput() {
-  console.log = function() {}
-  console.error = function() {}
-}
-function enableOutput() {
-  console.log = console.orig_log
-  console.error = console.orig_error
-}
