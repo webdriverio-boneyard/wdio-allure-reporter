@@ -28,3 +28,4 @@ node_modules
 
 # Unit test results
 allure-results/
+screenshots/

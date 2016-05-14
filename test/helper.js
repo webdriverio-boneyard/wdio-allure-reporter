@@ -4,7 +4,6 @@ let fs = require('fs')
 let path = require('path')
 let rimraf = require('rimraf')
 let resultsDir = path.join(__dirname, '../allure-results')
-let configFile = './test/fixtures/wdio.conf.js'
 let Launcher = require('webdriverio/build/lib/launcher')
 let parseXmlString = require('xml2js').parseString 
 
@@ -27,11 +26,19 @@ class helper {
   }
 
   static getResults () {
-    return fs.readdirSync(resultsDir)
-      .filter((file) => file.endsWith('.xml'))
+    return helper.getResultFiles('xml')
       .map((file) => {
         return fs.readFileSync(path.join(resultsDir, file))
       })
+  }
+
+  static getResultFiles(pattern) {
+
+    let filter = getResultFileFilter(pattern)
+
+    return fs.readdirSync(resultsDir)
+      .filter(filter)
+
   }
 
   static clean () {
@@ -46,12 +53,12 @@ class helper {
     })
   }
 
-  static run (specs) {
+  static run (specs, configName) {
 
     helper.disableOutput()
     specs = specs.map((spec) => './test/fixtures/specs/' + spec + '.js')
 
-    let launcher = new Launcher(configFile, {
+    let launcher = new Launcher(getConfigFilePath(configName), {
       specs: specs
     })
 
@@ -69,6 +76,38 @@ class helper {
   static enableOutput() {
     console.log = console.orig_log
     console.error = console.orig_error
+  }
+
+}
+
+function getConfigFilePath (configName) {
+  return [
+    './test/fixtures/',
+    configName ? 'wdio-' + configName : 'wdio',
+    '.conf.js'
+  ].join('');
+}
+
+function getResultFileFilter (pattern) {
+
+  if(pattern instanceof Array) {
+    return (file) => {
+      let match = false
+      pattern
+        .map(getResultFileFilter)
+        .forEach((filter) => {
+          if(!match && filter(file)) {
+            match = true;
+          }
+        })
+      return match;
+    }
+  } else if(typeof(pattern) === 'string') {
+    return (file) => file.endsWith('.' + pattern)
+  } else if(pattern instanceof RegExp) {
+    return (file) => pattern.test(file)
+  } else {
+    return () => true
   }
 
 }
