@@ -12,7 +12,7 @@ describe('"after all" hook', () => {
     return helper.run(['after-all-passing']).then((code) => {
 
       expect(code, 'wrong exit status code').to.equal(0)
-      return helper.getResultsXML();
+      return helper.getResultsXML()
       
     })
     .then((results) => {
@@ -21,7 +21,7 @@ describe('"after all" hook', () => {
       expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
       
       const hookNames = ['before', 'before all', 'before each', 'after all', 'after each']
-        .map(hookName => '"' + hookName + '" hook');
+        .map(hookName => '"' + hookName + '" hook')
 
       const hookErrors = results[0]['ns2:test-suite']['test-cases'][0]['test-case']
         .filter(testCase => hookNames.indexOf(testCase.name[0]) > -1)
@@ -37,7 +37,7 @@ describe('"after all" hook', () => {
     return helper.run(['after-all-failing']).then((code) => {
 
       expect(code, 'wrong exit status code').to.be.at.least(1)
-      return helper.getResultsXML();
+      return helper.getResultsXML()
 
     })
     .then((results) => {

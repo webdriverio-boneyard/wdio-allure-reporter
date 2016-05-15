@@ -11,7 +11,7 @@ describe('First passing Suite', () => {
       .click('#clickable')
       .getValue('#result')
       .then((value) => {
-        expect(value).to.be.equal('1');
+        expect(value).to.be.equal('1')
       })
   })
 
@@ -26,7 +26,7 @@ describe('Second passing Suite', () => {
       .click('#clickable')
       .getValue('#result')
       .then((value) => {
-        expect(value).to.be.equal('1');
+        expect(value).to.be.equal('1')
       })
   })
 

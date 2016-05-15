@@ -2,7 +2,7 @@
 
 let expect = require('chai').expect
 let helper = require('../helper')
-let entities = require('entities');
+let entities = require('entities')
 
 describe('Screenshots', () => {
 
@@ -13,7 +13,7 @@ describe('Screenshots', () => {
     return helper.run(['screenshot-before-all', 'screenshot']).then((code) => {
 
       expect(code, 'wrong exit status code').to.equal(0)
-      return helper.getResultsXML();
+      return helper.getResultsXML()
       
     })
     .then((results) => {
@@ -22,7 +22,7 @@ describe('Screenshots', () => {
       expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
       
       let screenshotFiles = helper.getResultFiles(['jpg', 'png'])
-      expect(screenshotFiles, 'no screenshot files attached').to.have.lengthOf(1);
+      expect(screenshotFiles, 'no screenshot files attached').to.have.lengthOf(1)
 
     })
 
@@ -33,7 +33,7 @@ describe('Screenshots', () => {
     return helper.run(['screenshot-after-all'], 'screenshot').then((code) => {
 
       expect(code, 'wrong exit status code').to.equal(0)
-      return helper.getResultsXML();
+      return helper.getResultsXML()
       
     })
     .then((results) => {
@@ -42,7 +42,7 @@ describe('Screenshots', () => {
       expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
       
       let screenshotFiles = helper.getResultFiles(['jpg', 'png'])
-      expect(screenshotFiles, 'no screenshot files attached').to.have.lengthOf(1);
+      expect(screenshotFiles, 'no screenshot files attached').to.have.lengthOf(1)
 
     })
 
@@ -53,7 +53,7 @@ describe('Screenshots', () => {
     return helper.run(['screenshot'], 'screenshot').then((code) => {
 
       expect(code, 'wrong exit status code').to.equal(0)
-      return helper.getResultsXML();
+      return helper.getResultsXML()
       
     })
     .then((results) => {
@@ -62,7 +62,7 @@ describe('Screenshots', () => {
       expect(results[0]['ns2:test-suite']['test-cases']).to.have.lengthOf(1)
       
       let screenshotFiles = helper.getResultFiles(['jpg', 'png'])
-      expect(screenshotFiles, 'no screenshot files attached').to.have.lengthOf(1);
+      expect(screenshotFiles, 'no screenshot files attached').to.have.lengthOf(1)
 
     })
 

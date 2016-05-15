@@ -11,7 +11,7 @@ describe('A passing Suite', () => {
       .click('#clickable')
       .getValue('#result')
       .then((value) => {
-        expect(value).to.be.equal('1');
+        expect(value).to.be.equal('1')
       })
   })
 

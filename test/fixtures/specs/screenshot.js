@@ -11,7 +11,7 @@ describe('Screenshot during passing test', () => {
       .screenshot()
       .getValue('#result')
       .then((value) => {
-        expect(value).to.be.equal('1');
+        expect(value).to.be.equal('1')
       })
   })
 
