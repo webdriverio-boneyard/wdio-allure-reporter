@@ -112,7 +112,6 @@ describe('Suites', () => {
           return helper.getResultsXML()
         })
         .then((res) => {
-          console.log(res[0], res[1])
           results = res
         })
     })
