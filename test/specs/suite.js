@@ -85,11 +85,13 @@ describe('Suites', () => {
         switch(row['ns2:test-suite']['name'][0]) {
 
           case "First passing Suite":
+            expect(row['ns2:test-suite']['test-cases'][0]['test-case'][0]['$']['status']).to.be.equal('passed')
             expect(row['ns2:test-suite']['test-cases'][0]['test-case'][0]['name'][0]).to.be.equal('with passing test in the first Suite')
             break
 
           case "Second passing Suite":
             expect(row['ns2:test-suite']['test-cases'][0]['test-case'][0]['name'][0]).to.be.equal('with passing test in the second Suite')
+            expect(row['ns2:test-suite']['test-cases'][0]['test-case'][0]['$']['status']).to.be.equal('passed')
             break
 
         }
