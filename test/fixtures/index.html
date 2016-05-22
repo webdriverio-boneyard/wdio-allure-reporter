@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clickable</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+  <div id="clickable">Clickable</div>
+  <div id="unclickable" on-click="doOnClick">Not Clickable</div>
+  <div id="overlay"></div>
+  <input type="hidden" id="result" value="0" />
+
+  <script type="text/javascript">
+
+    var doOnClick = function() {
+       var count = parseInt(document.querySelector('#result').value.trim(), 10)
+       document.querySelector('#result').value = count + 1;
+    }
+
+    document.querySelector('#clickable').addEventListener('click', doOnClick);
+    document.querySelector('#unclickable').addEventListener('click', doOnClick);
+
+  </script>
+
+</body>
+</html>

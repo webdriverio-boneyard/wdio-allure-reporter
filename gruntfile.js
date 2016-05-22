@@ -3,7 +3,10 @@ var path = require('path')
 module.exports = function (grunt) {
     grunt.initConfig({
         pkgFile: 'package.json',
-        clean: ['build'],
+        clean: {
+            default: ['build'],
+            test: ['allure-results']
+        },
         babel: {
             options: {
                 sourceMap: false,
@@ -41,11 +44,21 @@ module.exports = function (grunt) {
                 files: './lib/**/*.js',
                 tasks: ['babel:dist']
             }
+        },
+        mochaTest: {
+            test: {
+                options: {
+                    reporter: 'spec',
+                    quiet: false,
+                    timeout: 8000
+                },
+                src: ['test/runner.js']
+            }
         }
     })
 
     require('load-grunt-tasks')(grunt)
-    grunt.registerTask('default', ['eslint', 'build'])
+    grunt.registerTask('default', ['eslint', 'build', 'test'])
     grunt.registerTask('build', 'Build wdio-allure-reporter', function () {
         grunt.task.run([
             'clean',
@@ -59,4 +72,9 @@ module.exports = function (grunt) {
             'bump:' + (type || 'patch')
         ])
     })
+    grunt.registerTask('test', 'Integration Tests', [
+        'selenium_start',
+        'mochaTest',
+        'selenium_stop'
+    ])
 }
