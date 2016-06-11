@@ -1,11 +1,7 @@
-'use strict';
-
-var expect = require('chai').expect;
+'use strict'
 
 describe('A failing Suite', () => {
-
-  it('with failing test', () => {
-    throw new Error('well known error')
-  })
-
+    it('with failing test', () => {
+        throw new Error('well known error')
+    })
 })

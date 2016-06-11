@@ -1,5 +1,3 @@
-var path = require('path')
-
 module.exports = function (grunt) {
     grunt.initConfig({
         pkgFile: 'package.json',
@@ -26,7 +24,7 @@ module.exports = function (grunt) {
             options: {
                 parser: 'babel-eslint'
             },
-            target: ['lib/reporter.js']
+            target: ['lib/**/*.js', 'test/**/*.js']
         },
         contributors: {
             options: {
