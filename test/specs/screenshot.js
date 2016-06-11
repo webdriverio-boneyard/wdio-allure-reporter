@@ -7,7 +7,7 @@ describe('Screenshots', () => {
     beforeEach(helper.clean)
 
     it('can be taken in a "before all" task', () => {
-        return helper.run(['screenshot-before-all', 'screenshot']).then((code) => {
+        return helper.run(['screenshot-before-all'], 'screenshot').then((code) => {
             expect(code, 'wrong exit status code').to.equal(0)
             return helper.getResultsXML()
         }).then((results) => {

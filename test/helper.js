@@ -1,107 +1,63 @@
 'use strict'
 
-let fs = require('fs')
-let path = require('path')
-let rimraf = require('rimraf')
-let resultsDir = path.join(__dirname, '../allure-results')
-let Launcher = require('webdriverio/build/lib/launcher')
-let parseXmlString = require('xml2js').parseString
+const fs = require('fs')
+const path = require('path')
+const del = require('del')
+const resultsDir = path.join(__dirname, '../allure-results')
+const Launcher = require('webdriverio/build/lib/launcher')
+const denodeify = require('denodeify')
+const parseXmlString = denodeify(require('xml2js').parseString)
 
 class Helper {
 
-  static getResultsXML () {
-      let promises = Helper.getResults().map((result) => {
-          return new Promise((resolve, reject) => {
-              parseXmlString(result, { trim: true }, (err, xmlData) => {
-                  if (err) {
-                      reject(err)
-                  } else {
-                      resolve(xmlData)
-                  }
-              })
-          })
-      })
+    static getResultsXML () {
+        return Promise.all(
+            Helper.getResults().map((result) => parseXmlString(result, { trim: true }))
+        )
+    }
 
-      return Promise.all(promises)
-  }
-
-  static getResults () {
-      return Helper.getResultFiles('xml')
-      .map((file) => {
-          return fs.readFileSync(path.join(resultsDir, file))
-      })
-  }
-
-  static getResultFiles (pattern) {
-      let filter = getResultFileFilter(pattern)
-
-      return fs.readdirSync(resultsDir).filter(filter)
-  }
-
-  static clean () {
-      return new Promise((resolve, reject) => {
-          rimraf(resultsDir, (err) => {
-              if (err) {
-                  reject(err)
-              } else {
-                  resolve()
-              }
-          })
-      })
-  }
-
-  static run (specs, configName) {
-      Helper.disableOutput()
-      specs = specs.map((spec) => './test/fixtures/specs/' + spec + '.js')
-
-      let launcher = new Launcher(getConfigFilePath(configName), {
-          specs: specs
-      })
-
-      let out = launcher.run()
-      out.then(Helper.enableOutput)
-
-      return out
-  }
-
-  static disableOutput () {
-      console.log = function () {}
-      console.error = function () {}
-  }
-  static enableOutput () {
-      console.log = console.orig_log
-      console.error = console.orig_error
-  }
-
-}
-
-function getConfigFilePath (configName) {
-    return [
-        './test/fixtures/',
-        configName ? 'wdio-' + configName : 'wdio',
-        '.conf.js'
-    ].join('')
-}
-
-function getResultFileFilter (pattern) {
-    if (pattern instanceof Array) {
-        return (file) => {
-            let match = false
-            pattern
-        .map(getResultFileFilter)
-        .forEach((filter) => {
-            if (!match && filter(file)) {
-                match = true
-            }
+    static getResults () {
+        return Helper.getResultFiles('xml').map((file) => {
+            return fs.readFileSync(path.join(resultsDir, file))
         })
-            return match
+    }
+
+    static getResultFiles (patterns) {
+        if (!Array.isArray(patterns)) {
+            patterns = [patterns]
         }
-    } else if (typeof (pattern) === 'string') {
-        return (file) => file.endsWith('.' + pattern)
-    } else if (pattern instanceof RegExp) {
-        return (file) => pattern.test(file)
-    } else {
-        return () => true
+        return fs.readdirSync(resultsDir).filter((file) =>
+            patterns.some(pattern => file.endsWith('.' + pattern)))
+    }
+
+    static clean () {
+        return del(resultsDir)
+    }
+
+    static run (specs, configName) {
+        Helper.disableOutput()
+
+        const launcher = new Launcher(
+            `./test/fixtures/wdio-${configName || 'default'}.conf.js`,
+            {
+                specs: specs.map(spec => `./test/fixtures/specs/${spec}.js`)
+            }
+        )
+
+        return launcher.run().then(result => {
+            Helper.enableOutput()
+            return result
+        })
+    }
+
+    static disableOutput () {
+        console.log = function () {}
+        console.error = function () {}
+    }
+
+    static enableOutput () {
+        console.log = console.orig_log
+        console.error = console.orig_error
     }
 }
 

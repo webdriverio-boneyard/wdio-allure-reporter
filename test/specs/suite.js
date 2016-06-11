@@ -1,11 +1,9 @@
 'use strict'
-
-let expect = require('chai').expect
-let helper = require('../helper')
+const expect = require('chai').expect
+const helper = require('../helper')
 
 describe('Suites', () => {
     beforeEach(helper.clean)
-    afterEach(helper.clean)
 
     it('get their title from the top level describe block', () => {
         return helper.run(['passing']).then((code) => {

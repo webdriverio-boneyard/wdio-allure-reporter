@@ -50,7 +50,7 @@ module.exports = function (grunt) {
                     quiet: false,
                     timeout: 8000
                 },
-                src: ['test/runner.js']
+                src: 'test/specs/*.js'
             }
         }
     })
