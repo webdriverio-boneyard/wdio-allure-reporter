@@ -3,7 +3,7 @@
 let expect = require('chai').expect
 let helper = require('../helper')
 
-describe('Screenshots', () => {
+xdescribe('Screenshots', () => {
     beforeEach(helper.clean)
 
     it('can be taken in a "before all" task', () => {

@@ -16,6 +16,6 @@ exports.config = {
     },
     sync: false,
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'phantomjs'
     }]
 }

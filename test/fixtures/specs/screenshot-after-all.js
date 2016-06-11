@@ -1,6 +1,5 @@
 'use strict'
-
-var expect = require('chai').expect
+const expect = require('chai').expect
 
 describe('Screenshot during "after all" hook', () => {
     after(() => {

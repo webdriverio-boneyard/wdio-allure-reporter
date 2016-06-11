@@ -1,13 +1,14 @@
 'use strict'
 const expect = require('chai').expect
 
-describe('"before all" passing', () => {
-    before(() => {
-        return browser.url('/index.html')
+describe('"after each" failing', () => {
+    afterEach(() => {
+        return Promise.reject(new Error('for test'))
     })
 
     it('with passing test', () => {
         return browser
+            .url('/index.html')
             .waitForExist('#clickable')
             .click('#clickable')
             .getValue('#result')

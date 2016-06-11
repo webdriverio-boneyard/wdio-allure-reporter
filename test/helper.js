@@ -5,20 +5,13 @@ const path = require('path')
 const del = require('del')
 const resultsDir = path.join(__dirname, '../allure-results')
 const Launcher = require('webdriverio/build/lib/launcher')
-const denodeify = require('denodeify')
-const parseXmlString = denodeify(require('xml2js').parseString)
+const cheerio = require('cheerio')
 
 class Helper {
 
-    static getResultsXML () {
-        return Promise.all(
-            Helper.getResults().map((result) => parseXmlString(result, { trim: true }))
-        )
-    }
-
     static getResults () {
         return Helper.getResultFiles('xml').map((file) => {
-            return fs.readFileSync(path.join(resultsDir, file))
+            return cheerio.load(fs.readFileSync(path.join(resultsDir, file), 'utf-8'))
         })
     }
 
@@ -46,7 +39,7 @@ class Helper {
 
         return launcher.run().then(result => {
             Helper.enableOutput()
-            return result
+            return Helper.getResults()
         })
     }
 
