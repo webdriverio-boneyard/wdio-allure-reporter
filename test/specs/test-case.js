@@ -12,6 +12,7 @@ describe('test cases', () => {
             expect(result('ns2\\:test-suite > name').text()).to.be.equal('A passing Suite')
             expect(result('test-case > name').text()).to.be.equal('with passing test')
             expect(result('test-case').attr('status')).to.be.equal('passed')
+            expect(result('test-case parameter[kind="environment-variable"]')).to.have.lengthOf(2)
         })
     })
 
