@@ -17,6 +17,6 @@ exports.config = {
     sync: false,
     screenshotPath: './screenshots',
     capabilities: [{
-        browserName: 'phantomjs'
+        browserName: 'chrome'
     }]
 }
