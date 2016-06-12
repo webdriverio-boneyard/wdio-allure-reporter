@@ -15,8 +15,8 @@ exports.config = {
         ui: 'bdd'
     },
     sync: false,
+    screenshotPath: './screenshots',
     capabilities: [{
         browserName: 'phantomjs'
-    }],
-    screenshotPath: './screenshots'
+    }]
 }

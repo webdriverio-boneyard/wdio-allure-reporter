@@ -27,15 +27,12 @@ class Helper {
         return del(resultsDir)
     }
 
-    static run (specs, configName) {
+    static run (specs) {
         Helper.disableOutput()
 
-        const launcher = new Launcher(
-            `./test/fixtures/wdio-${configName || 'default'}.conf.js`,
-            {
-                specs: specs.map(spec => `./test/fixtures/specs/${spec}.js`)
-            }
-        )
+        const launcher = new Launcher('./test/fixtures/wdio.conf.js', {
+            specs: specs.map(spec => `./test/fixtures/specs/${spec}.js`)
+        })
 
         return launcher.run().then(result => {
             Helper.enableOutput()
@@ -44,17 +41,29 @@ class Helper {
     }
 
     static disableOutput () {
-        console.log = function () {}
-        console.error = function () {}
+        const mockLog = (type) => (...message) => {
+            this.logs[type].push(message.join(' '))
+        }
+        this.logs = {
+            log: [],
+            warn: [],
+            error: []
+        }
+        this.originalConsole = {
+            log: console.log,
+            warn: console.warn,
+            error: console.error
+        }
+        console.log = mockLog('log')
+        console.warn = mockLog('warn')
+        console.error = mockLog('error')
     }
 
     static enableOutput () {
-        console.log = console.orig_log
-        console.error = console.orig_error
+        console.log = this.originalConsole.log
+        console.warn = this.originalConsole.warn
+        console.error = this.originalConsole.error
     }
 }
-
-console.orig_log = console.log
-console.orig_error = console.error
 
 module.exports = Helper
