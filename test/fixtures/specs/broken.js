@@ -2,6 +2,8 @@
 
 describe('A broken Suite', () => {
     it('with broken test', () => {
-        throw new Error('unexpected error')
+        return browser
+          .url('/index.html')
+          .click('.missing-element')
     })
 })
