@@ -3,11 +3,12 @@ const expect = require('chai').expect
 
 describe('"before all" passing', () => {
     before(() => {
-        return browser.url('/index.html')
+        return Promise.resolve()
     })
 
     it('with passing test', () => {
         return browser
+            .url('/index.html')
             .waitForExist('#clickable')
             .click('#clickable')
             .getValue('#result')

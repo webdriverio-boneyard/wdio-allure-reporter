@@ -3,7 +3,7 @@ const expect = require('chai').expect
 
 describe('"after all" failing', () => {
     after(() => {
-        throw new Error('Immediately thrown error in "after all" hook')
+        expect(true).to.be.equal(false)
     })
 
     it('with passing test', () => {

@@ -27,18 +27,7 @@ describe('Screenshots', () => {
         })
     })
 
-    it('should not fail on uncaptured commands but write warning', () => {
-        return helper.run(['screenshot-before-all']).then((results) => {
-            const screenshotWarnings = helper.logs.warn.filter(log => {
-                return log.match(/GET \/wd\/hub\/session\/[^\/]*\/screenshot is not whithin any running test/)
-            })
-            expect(screenshotWarnings).to.have.lengthOf(1)
-            expect(helper.logs.error).to.have.lengthOf(0)
-            expect(results).to.have.lengthOf(1)
-        })
-    })
-
-    xit('[not supported yet] can be taken in an "before all" hook', () => {
+    it('can be taken in an "before all" hook', () => {
         return helper.run(['screenshot-before-all']).then((results) => {
             expect(results).to.have.lengthOf(1)
 
