@@ -3,7 +3,7 @@ module.exports = function (grunt) {
         pkgFile: 'package.json',
         clean: {
             default: ['build'],
-            test: ['allure-results']
+            test: ['.allure-results']
         },
         babel: {
             options: {
