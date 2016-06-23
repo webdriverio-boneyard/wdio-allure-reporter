@@ -41,6 +41,9 @@ class Helper {
     }
 
     static disableOutput () {
+        if (process.env.FULL_OUTPUT) {
+            return
+        }
         const mockLog = (type) => (...message) => {
             this.logs[type].push(message.join(' '))
         }
@@ -60,6 +63,9 @@ class Helper {
     }
 
     static enableOutput () {
+        if (process.env.FULL_OUTPUT) {
+            return
+        }
         console.log = this.originalConsole.log
         console.warn = this.originalConsole.warn
         console.error = this.originalConsole.error
