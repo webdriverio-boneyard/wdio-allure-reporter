@@ -64,8 +64,8 @@ For more information on WebdriverIO see the [homepage](http://webdriver.io).
 
 ## Development
 
-### Unit Test
-Unit Tests are running webdriverio multiple times using the wdio-allure-reporter and verifying the output.
+### Integration Tests
+Integration Tests are running webdriverio multiple times using the wdio-allure-reporter and verifying the output.
 ```
-grunt test
+npm test
 ```
