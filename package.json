@@ -5,7 +5,7 @@
   "main": "build/reporter.js",
   "scripts": {
     "build": "grunt",
-    "test": "node --harmony_rest_parameters ./node_modules/grunt-cli/bin/grunt test",
+    "test": "grunt test",
     "prepublish": "npm prune && npm run build"
   },
   "repository": {

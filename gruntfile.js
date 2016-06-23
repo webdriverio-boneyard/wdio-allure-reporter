@@ -46,6 +46,7 @@ module.exports = function (grunt) {
         mochaTest: {
             test: {
                 options: {
+                    require: ['babel/register'],
                     reporter: 'spec',
                     quiet: false,
                     timeout: 8000

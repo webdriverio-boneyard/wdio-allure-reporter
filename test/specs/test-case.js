@@ -1,11 +1,11 @@
-const expect = require('chai').expect
-const helper = require('../helper')
+import {expect} from 'chai'
+import {clean, run} from '../helper'
 
 describe('test cases', () => {
-    beforeEach(helper.clean)
+    beforeEach(clean)
 
     it('should detect passed test case', () => {
-        return helper.run(['passing']).then((results) => {
+        return run(['passing']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 
@@ -17,7 +17,7 @@ describe('test cases', () => {
     })
 
     it('should detect broken test case', () => {
-        return helper.run(['broken']).then((results) => {
+        return run(['broken']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 
@@ -29,7 +29,7 @@ describe('test cases', () => {
     })
 
     it('should detect passed failed case', () => {
-        return helper.run(['failing']).then((results) => {
+        return run(['failing']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 

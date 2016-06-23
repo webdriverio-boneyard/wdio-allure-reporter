@@ -1,13 +1,11 @@
-'use strict'
-
-let expect = require('chai').expect
-let helper = require('../helper')
+import {expect} from 'chai'
+import {clean, run} from '../helper'
 
 describe('before hooks', () => {
-    beforeEach(helper.clean)
+    beforeEach(clean)
 
     it('should not appear in results when it is passing', () => {
-        return helper.run(['before-all-passing']).then((results) => {
+        return run(['before-all-passing']).then((results) => {
             expect(results).to.have.lengthOf(1)
 
             const result = results[0]
@@ -18,7 +16,7 @@ describe('before hooks', () => {
     })
 
     it('should report failed before-all hook', () => {
-        return helper.run(['before-all-failing']).then((results) => {
+        return run(['before-all-failing']).then((results) => {
             expect(results).to.have.lengthOf(1)
 
             const result = results[0]
@@ -29,7 +27,7 @@ describe('before hooks', () => {
     })
 
     it('should report before-each hook', () => {
-        return helper.run(['before-each-failing']).then((results) => {
+        return run(['before-each-failing']).then((results) => {
             expect(results).to.have.lengthOf(1)
 
             const result = results[0]
