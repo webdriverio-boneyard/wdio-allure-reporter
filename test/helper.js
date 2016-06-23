@@ -3,7 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const del = require('del')
-const resultsDir = path.join(__dirname, '../allure-results')
+const resultsDir = path.join(__dirname, '../.allure-results')
 const Launcher = require('webdriverio/build/lib/launcher')
 const cheerio = require('cheerio')
 
