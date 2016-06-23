@@ -1,12 +1,11 @@
-'use strict'
-const expect = require('chai').expect
-const helper = require('../helper')
+import {expect} from 'chai'
+import {clean, run} from '../helper'
 
 describe('Suites', () => {
-    beforeEach(helper.clean)
+    beforeEach(clean)
 
     it('should report two suites from one file', () => {
-        return helper.run(['two-passing-in-one-suite']).then((results) => {
+        return run(['two-passing-in-one-suite']).then((results) => {
             expect(results).to.have.lengthOf(2)
             results.forEach(result => {
                 expect(result('ns2\\:test-suite > name').text())
@@ -18,7 +17,7 @@ describe('Suites', () => {
     })
 
     it('should split nested suites', () => {
-        return helper.run(['nested-suite']).then(results => {
+        return run(['nested-suite']).then(results => {
             expect(results).to.have.lengthOf(2)
 
             const suiteNames = results.map(result => result('ns2\\:test-suite > name').text())

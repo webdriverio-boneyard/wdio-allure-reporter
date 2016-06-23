@@ -1,37 +1,35 @@
-'use strict'
-
-let expect = require('chai').expect
-let helper = require('../helper')
+import {expect} from 'chai'
+import {clean, run, getResultFiles} from '../helper'
 
 describe('Screenshots', () => {
-    beforeEach(helper.clean)
+    beforeEach(clean)
 
     it('can be taken during a test', () => {
-        return helper.run(['screenshot']).then((results) => {
+        return run(['screenshot']).then((results) => {
             expect(results).to.have.lengthOf(1)
             expect(results[0]('test-case')).to.have.lengthOf(1)
 
-            const screenshotFiles = helper.getResultFiles('png')
+            const screenshotFiles = getResultFiles('png')
             expect(screenshotFiles, 'no screenshot files attached').to.have.lengthOf(1)
             expect(results[0]('test-case attachment[title="Screenshot"]')).to.have.lengthOf(1)
         })
     })
 
     it('can take screenshot before each test and attach it accordingly', () => {
-        return helper.run(['screenshot-before-each']).then((results) => {
+        return run(['screenshot-before-each']).then((results) => {
             expect(results[0]('test-case')).to.have.lengthOf(2)
             expect(results[0]('test-case attachment[title="Screenshot"]')).to.have.lengthOf(2)
 
-            const screenshotFiles = helper.getResultFiles('png')
+            const screenshotFiles = getResultFiles('png')
             expect(screenshotFiles, 'no screenshot files attached').to.have.lengthOf(2)
         })
     })
 
     it('can be taken in an "before all" hook', () => {
-        return helper.run(['screenshot-before-all']).then((results) => {
+        return run(['screenshot-before-all']).then((results) => {
             expect(results).to.have.lengthOf(1)
 
-            let screenshotFiles = helper.getResultFiles(['jpg', 'png'])
+            let screenshotFiles = getResultFiles(['jpg', 'png'])
             expect(screenshotFiles, 'no screenshot files attached').to.have.lengthOf(1)
         })
     })

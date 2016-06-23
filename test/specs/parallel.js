@@ -1,12 +1,11 @@
-'use strict'
-const helper = require('../helper')
-const expect = require('chai').expect
+import {expect} from 'chai'
+import {clean, run} from '../helper'
 
 describe('parallel', () => {
-    beforeEach(helper.clean)
+    beforeEach(clean)
 
     it('should run several suites in parallel', () => {
-        return helper.run(['broken', 'failing']).then((results) => {
+        return run(['broken', 'failing']).then((results) => {
             expect(results).to.have.lengthOf(2)
             const startTimes = results.map(result => result('test-case').attr('start'))
             const stopTimes = results.map(result => result('test-case').attr('stop'))
