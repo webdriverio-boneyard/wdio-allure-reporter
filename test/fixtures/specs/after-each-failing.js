@@ -1,9 +1,9 @@
 'use strict'
 const expect = require('chai').expect
 
-describe('"before all" passing', () => {
-    before(() => {
-        return Promise.resolve()
+describe('"after each" failing', () => {
+    afterEach(() => {
+        return Promise.reject(new Error('for test'))
     })
 
     it('with passing test', () => {

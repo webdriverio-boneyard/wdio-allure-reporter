@@ -1,5 +1,3 @@
-var path = require('path')
-
 module.exports = function (grunt) {
     grunt.initConfig({
         pkgFile: 'package.json',
@@ -16,7 +14,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: './lib',
-                    src: ['**/*'],
+                    src: ['**/*.js'],
                     dest: 'build',
                     ext: '.js'
                 }]
@@ -26,7 +24,7 @@ module.exports = function (grunt) {
             options: {
                 parser: 'babel-eslint'
             },
-            target: ['lib/reporter.js']
+            target: ['lib/**/*.js', 'test/**/*.js']
         },
         contributors: {
             options: {
@@ -52,7 +50,7 @@ module.exports = function (grunt) {
                     quiet: false,
                     timeout: 8000
                 },
-                src: ['test/runner.js']
+                src: 'test/specs/*.js'
             }
         }
     })

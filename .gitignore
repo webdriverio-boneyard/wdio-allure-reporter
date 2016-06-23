@@ -27,5 +27,5 @@ build
 node_modules
 
 # Unit test results
-allure-results/
+.allure-results/
 screenshots/
