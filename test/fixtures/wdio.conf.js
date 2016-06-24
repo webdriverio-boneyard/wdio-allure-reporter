@@ -1,15 +1,15 @@
-var fs = require('fs')
 var allureReporter = require('../../build/reporter')
 allureReporter.reporterName = 'allure'
 
 exports.config = {
-    baseUrl: 'file:///' + fs.realpathSync(__dirname),
+    baseUrl: 'http://localhost:8080',
     coloredLogs: true,
     logLevel: 'silent',
     reporters: [allureReporter],
     framework: 'mocha',
     mochaOpts: {
-        ui: 'bdd'
+        ui: 'bdd',
+        timeout: 20000
     },
     reporterOptions: {
         allure: {

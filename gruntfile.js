@@ -53,6 +53,14 @@ module.exports = function (grunt) {
                 },
                 src: 'test/specs/*.js'
             }
+        },
+        connect: {
+            testpage: {
+                options: {
+                    port: 8080,
+                    base: './test/fixtures'
+                }
+            }
         }
     })
 
@@ -72,8 +80,7 @@ module.exports = function (grunt) {
         ])
     })
     grunt.registerTask('test', 'Integration Tests', [
-        'selenium_start',
-        'mochaTest',
-        'selenium_stop'
+        'connect',
+        'mochaTest'
     ])
 }

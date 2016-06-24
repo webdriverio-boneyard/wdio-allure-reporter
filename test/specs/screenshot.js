@@ -1,5 +1,5 @@
-import {expect} from 'chai'
-import {clean, run, getResultFiles} from '../helper'
+import { expect } from 'chai'
+import { clean, run, getResultFiles } from '../helper'
 
 describe('Screenshots', () => {
     beforeEach(clean)
