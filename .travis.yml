@@ -4,4 +4,5 @@ node_js:
   - '4.4.3'
 
 before_script:
+  - phantomjs --webdriver=4444 2>&1 >/dev/null &
   - ./node_modules/.bin/grunt
