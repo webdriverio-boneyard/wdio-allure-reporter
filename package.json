@@ -55,8 +55,8 @@
     "grunt-npm": "0.0.2",
     "grunt-selenium-webdriver": "^0.2.482",
     "load-grunt-tasks": "^3.2.0",
-    "wdio-mocha-framework": "^0.2.13",
-    "webdriverio": "^4.0.7"
+    "wdio-mocha-framework": "^0.3.4",
+    "webdriverio": "^4.1.1"
   },
   "contributors": [
     "christian-bromann <contact@christian-bromann.com>",
