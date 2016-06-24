@@ -59,9 +59,12 @@
     "webdriverio": "^4.1.1"
   },
   "contributors": [
+    "George Crawford <george.crawford@ft.com>",
+    "just-boris <just-boris@hotmail.com>",
     "christian-bromann <contact@christian-bromann.com>",
     "Christian Bromann <github@christian-bromann.com>",
-    "Stefan Grönke <stefan@gronke.net>",
-    "George Crawford <g.o.crawford@gmail.com>"
+    "George Crawford <g.o.crawford@gmail.com>",
+    "Stefan Grönke <stefan@gronke.org>",
+    "Boris Serdiuk <just-boris@hotmail.com>"
   ]
 }
