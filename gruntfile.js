@@ -65,7 +65,7 @@ module.exports = function (grunt) {
     })
 
     require('load-grunt-tasks')(grunt)
-    grunt.registerTask('default', ['eslint', 'build', 'test'])
+    grunt.registerTask('default', ['eslint', 'build'])
     grunt.registerTask('build', 'Build wdio-allure-reporter', function () {
         grunt.task.run([
             'clean',
