@@ -17,7 +17,7 @@ describe('test cases', () => {
     })
 
     /**
-     * failes with last assertion
+     * fails with last assertion
      */
     it.skip('should detect broken test case', () => {
         return run(['broken']).then((results) => {
