@@ -16,10 +16,7 @@ describe('test cases', () => {
         })
     })
 
-    /**
-     * fails with last assertion
-     */
-    it.skip('should detect broken test case', () => {
+    it('should detect broken test case', () => {
         return run(['broken']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
@@ -28,6 +25,7 @@ describe('test cases', () => {
             expect(result('test-case > name').text()).to.be.equal('with broken test')
             expect(result('test-case').attr('status')).to.be.equal('broken')
             expect(result('test-case step[status="broken"]')).to.have.lengthOf(1)
+            expect(result('test-case step[status=""]')).to.have.lengthOf(0)
         })
     })
 
