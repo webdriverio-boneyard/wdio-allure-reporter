@@ -59,12 +59,13 @@
     "webdriverio": "^4.1.1"
   },
   "contributors": [
-    "George Crawford <george.crawford@ft.com>",
     "christian-bromann <contact@christian-bromann.com>",
+    "George Crawford <george.crawford@ft.com>",
     "just-boris <just-boris@hotmail.com>",
-    "George Crawford <g.o.crawford@gmail.com>",
+    "Ilgiz Vafin <vafin@btf-consulting.ru>",
     "Christian Bromann <github@christian-bromann.com>",
-    "Stefan Grönke <stefan@gronke.org>",
-    "Boris Serdiuk <just-boris@hotmail.com>"
+    "George Crawford <g.o.crawford@gmail.com>",
+    "Boris Serdiuk <just-boris@hotmail.com>",
+    "Stefan Grönke <stefan@gronke.org>"
   ]
 }
