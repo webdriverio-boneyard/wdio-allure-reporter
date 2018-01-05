@@ -10,7 +10,7 @@ The easiest way is to keep `wdio-allure-reporter` as a devDependency in your `pa
 ```json
 {
   "devDependencies": {
-    "wdio-allure-reporter": "~0.0.2"
+    "wdio-allure-reporter": "~0.1.2"
   }
 }
 ```
@@ -76,6 +76,12 @@ For more information on WebdriverIO see the [homepage](http://webdriver.io).
 
 ### Integration Tests
 Integration Tests are running webdriverio multiple times using the wdio-allure-reporter and verifying the output.
+
+Run PhantomJS for test executing:
+```
+./node_modules/.bin/phantomjs --webdriver=4444
+```
+Run tests:
 ```
 npm test
 ```
