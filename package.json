@@ -63,7 +63,7 @@
     "grunt-npm": "^0.0.2",
     "load-grunt-tasks": "^3.5.2",
     "wdio-mocha-framework": "^0.5.12",
-    "webdriverio": "^4.8.0"
+    "webdriverio": "4.8.0"
   },
   "contributors": [
     "christian-bromann <contact@christian-bromann.com>",
