@@ -45,7 +45,7 @@ module.exports = function (grunt) {
                     require: ['babel-core/register'],
                     reporter: 'spec',
                     quiet: false,
-                    timeout: 8000
+                    timeout: 15000
                 },
                 src: 'test/specs/*.js'
             }
