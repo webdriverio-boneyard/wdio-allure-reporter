@@ -1,0 +1,4 @@
+--timeout 16000
+--ui bdd
+--require babel-core/register
+test/specs/*.js

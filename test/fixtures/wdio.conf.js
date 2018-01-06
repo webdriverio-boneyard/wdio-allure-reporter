@@ -5,6 +5,7 @@ exports.config = {
     baseUrl: 'http://localhost:8080',
     coloredLogs: true,
     logLevel: 'silent',
+    services: ['phantomjs'],
     reporters: [allureReporter],
     framework: 'mocha',
     mochaOpts: {

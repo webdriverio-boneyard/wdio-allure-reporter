@@ -4,5 +4,7 @@ node_js:
   - '6.10'
 
 before_script:
-  - phantomjs --webdriver=4444 2>&1 >/dev/null &
-  - ./node_modules/.bin/grunt
+  - ./node_modules/.bin/static ./test/fixtures 2>&1 >/dev/null &
+
+script:
+  - npm run test
