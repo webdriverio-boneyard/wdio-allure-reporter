@@ -85,3 +85,7 @@ Run tests:
 ```
 npm test
 ```
+
+## Supported Allure API
+* `feature(featureName)` – assign feature to test
+
