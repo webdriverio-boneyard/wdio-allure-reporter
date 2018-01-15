@@ -33,4 +33,15 @@ describe('Screenshots', () => {
             expect(screenshotFiles, 'no screenshot files attached').to.have.lengthOf(1)
         })
     })
+
+    it('can be taken in an "after" hook', () => {
+        return run(['screenshot-after']).then((results) => {
+            expect(results).to.have.lengthOf(1)
+            expect(results[0]('test-case')).to.have.lengthOf(2)
+
+            const screenshotFiles = getResultFiles('png')
+            expect(screenshotFiles, 'no screenshot files attached').to.have.lengthOf(1)
+            expect(results[0]('test-case attachment[title="Screenshot"]')).to.have.lengthOf(1)
+        })
+    })
 })
