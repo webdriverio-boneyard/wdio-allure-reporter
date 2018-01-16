@@ -24,10 +24,12 @@ export function clean () {
     return del(resultsDir)
 }
 
-export function run (specs) {
+export function run (specs, wdioConfigPath) {
     disableOutput()
-
-    const launcher = new Launcher('./test/fixtures/wdio.conf.js', {
+    if (!wdioConfigPath) {
+        wdioConfigPath = './test/fixtures/wdio.conf.js'
+    }
+    const launcher = new Launcher(wdioConfigPath, {
         specs: specs.map(spec => `./test/fixtures/specs/${spec}.js`)
     })
 
