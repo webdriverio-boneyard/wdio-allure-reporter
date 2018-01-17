@@ -15,7 +15,10 @@
     "test": "run-s eslint test:unit",
     "test:unit": "mocha",
     "prepublish": "npm prune && run-s build",
-    "watch": "npm run compile -- --watch"
+    "watch": "npm run compile -- --watch",
+    "report": "run-s report:*",
+    "report:generate": "allure generate .allure-results --clean",
+    "report:open": "allure open"  
   },
   "repository": {
     "type": "git",
@@ -43,6 +46,7 @@
     "babel-runtime": "^6.26.0"
   },
   "devDependencies": {
+    "allure-commandline": "^2.5.0",
     "babel-cli": "~6.26.0",
     "babel-core": "~6.25.0",
     "babel-eslint": "~8.1.0",

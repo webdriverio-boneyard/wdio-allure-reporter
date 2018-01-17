@@ -28,6 +28,7 @@ node_modules
 
 # Unit test results
 .allure-results/
+allure-report/
 screenshots/
 
 # JetBrains IDE
