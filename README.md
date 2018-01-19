@@ -111,4 +111,6 @@ npm test
     * `name` (*String*) - attachment name.
     * `content` – attachment content.
     * `type` (*String*, optional) – attachment MIME-type, `text/plain` by default
-
+* `addDescription(description, [type])` – add description to test.
+    * `description` (*String*) - description of the test.
+    * `type` (*String*, optional) – description type, `text` by default. Values ['text', 'html','markdown']
