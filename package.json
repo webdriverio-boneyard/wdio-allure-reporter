@@ -1,6 +1,6 @@
 {
   "name": "wdio-allure-reporter",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A WebdriverIO plugin. Report results in Allure format.",
   "main": "build/reporter.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "watch": "npm run compile -- --watch",
     "report": "run-s report:*",
     "report:generate": "allure generate .allure-results --clean",
-    "report:open": "allure open"  
+    "report:open": "allure open"
   },
   "repository": {
     "type": "git",
