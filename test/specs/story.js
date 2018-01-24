@@ -4,7 +4,7 @@ import { clean, run } from '../helper'
 describe('Stories', () => {
     beforeEach(clean)
 
-    it.only('should add stories to test cases', () => {
+    it('should add stories to test cases', () => {
         return run(['story']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
