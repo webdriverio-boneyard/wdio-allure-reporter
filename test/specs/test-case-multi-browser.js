@@ -16,7 +16,7 @@ describe('Multi-browser test case', () => {
             expect(result1('test-case parameter[kind="environment-variable"]')).to.have.lengthOf(2)
             expect(result1('test-case:first-of-type parameter').eq(0).attr('name')).to.be.equal('capabilities')
             expect(result1('test-case:first-of-type parameter').eq(1).attr('name')).to.be.equal('spec files')
-            expect(result1('test-case:first-of-type parameter').eq(1).attr('value')).to.be.contains('test/fixtures/specs/test-case-multi-browser.js')
+            expect(result1('test-case:first-of-type parameter').eq(1).attr('value')).to.be.contains('test-case-multi-browser.js')
 
             expect(result2('ns2\\:test-suite > name').text()).to.be.equal('A passing Suite')
             expect(result2('test-case > name').text()).to.be.equal('with passing test')
@@ -24,7 +24,7 @@ describe('Multi-browser test case', () => {
             expect(result2('test-case parameter[kind="environment-variable"]')).to.have.lengthOf(2)
             expect(result2('test-case:first-of-type parameter').eq(0).attr('name')).to.be.equal('capabilities')
             expect(result2('test-case:first-of-type parameter').eq(1).attr('name')).to.be.equal('spec files')
-            expect(result2('test-case:first-of-type parameter').eq(1).attr('value')).to.be.contains('test/fixtures/specs/test-case-multi-browser.js')
+            expect(result2('test-case:first-of-type parameter').eq(1).attr('value')).to.be.contains('test-case-multi-browser.js')
 
             const browserName1 = result1('test-case:first-of-type parameter').eq(0).attr('value')
             const browserName2 = result2('test-case:first-of-type parameter').eq(0).attr('value')
