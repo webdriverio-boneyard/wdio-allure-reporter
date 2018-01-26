@@ -39,6 +39,21 @@ export function run (specs, wdioConfigPath) {
     })
 }
 
+export function runFeatures (features, wdioConfigPath) {
+    disableOutput()
+    if (!wdioConfigPath) {
+        wdioConfigPath = './test/fixtures/wdio.conf.cucumber.js'
+    }
+    const launcher = new Launcher(wdioConfigPath, {
+        specs: features.map(feature => `./test/fixtures/features/${feature}.feature`)
+    })
+
+    return launcher.run().then(() => {
+        enableOutput()
+        return getResults()
+    })
+}
+
 let logs, originalConsole
 
 function disableOutput () {
