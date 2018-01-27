@@ -41,6 +41,36 @@ exports.config = {
 
 `outputDir` defaults to `./allure-results`. After a test run is complete, you will find that this directory has been populated with an `.xml` file for each spec, plus a number of `.txt` and `.png` files and other attachments.
 
+## Supported Allure API
+* `feature(featureName)` – assign feature to test
+* `story(storyName)` – assign user story to test
+* `addEnvironment(name, value)` – save environment value
+* `createAttachement(name, content, [type])` – save attachment to test.
+    * `name` (*String*) - attachment name.
+    * `content` – attachment content.
+    * `type` (*String*, optional) – attachment MIME-type, `text/plain` by default
+* `addDescription(description, [type])` – add description to test.
+    * `description` (*String*) - description of the test.
+    * `type` (*String*, optional) – description type, `text` by default. Values ['text', 'html','markdown']
+### Usage
+Allure Api can be accessed using:
+ES5
+```js
+const reporter = require('wdio-allure-reporter')
+```
+ES6
+```js
+import reporter from 'wdio-allure-reporter'
+```
+Mocha example
+```js
+describe('Suite', () => {
+    it('Case', () => {
+        reporter.feature('Feature')
+    })
+})
+```
+
 ## Displaying the report
 The results can be consumed by any of the [reporting tools](https://docs.qameta.io/allure#_reporting) offered by Allure. For example:
 
@@ -104,13 +134,3 @@ npm test
  ![screenshot 2016-02-05 10.15.57.png](./docs/images/browser.png)
  
  Because before each test ./.alure-result folder is cleaned, so you should generate report only for one test by setting it in ./test/mocha.opts
-## Supported Allure API
-* `feature(featureName)` – assign feature to test
-* `addEnvironment(name, value)` – save environment value
-* `createAttachement(name, content, [type])` – save attachment to test.
-    * `name` (*String*) - attachment name.
-    * `content` – attachment content.
-    * `type` (*String*, optional) – attachment MIME-type, `text/plain` by default
-* `addDescription(description, [type])` – add description to test.
-    * `description` (*String*) - description of the test.
-    * `type` (*String*, optional) – description type, `text` by default. Values ['text', 'html','markdown']

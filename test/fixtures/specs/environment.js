@@ -1,14 +1,14 @@
 'use strict'
 
-const addEnvironment = require('./../../../build/runtime').addEnvironment
+const reporter = require('./../../../build/reporter')
 
 describe('Suite with environments', () => {
     it('First case', () => {
-        addEnvironment('BROWSER', 'Chrome')
-        addEnvironment('ENVIRONMENT', 'TEST')
+        reporter.addEnvironment('BROWSER', 'Chrome')
+        reporter.addEnvironment('ENVIRONMENT', 'TEST')
     })
 
     it('Second case', () => {
-        addEnvironment('BROWSER', 'Firefox')
+        reporter.addEnvironment('BROWSER', 'Firefox')
     })
 })

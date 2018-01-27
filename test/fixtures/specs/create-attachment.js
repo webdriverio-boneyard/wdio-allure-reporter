@@ -1,14 +1,14 @@
 'use strict'
 
-const {createAttachment} = require('./../../../build/runtime')
+const reporter = require('./../../../build/reporter')
 
 describe('Suite with attachments', () => {
     it('Add attachment with plain text attachment', () => {
-        createAttachment('Plain text attachment', 'Plain text attachment')
+        reporter.createAttachment('Plain text attachment', 'Plain text attachment')
     })
 
     it('Add attachment with JSON type', () => {
-        createAttachment('JSON file attachment', {id: 1, name: 'Test user'}, 'application/json')
+        reporter.createAttachment('JSON file attachment', {id: 1, name: 'Test user'}, 'application/json')
     })
 
     it('Add attachment with HTML type', () => {
@@ -22,6 +22,6 @@ describe('Suite with attachments', () => {
             '</body>\n' +
             '</html>\n'
 
-        createAttachment('HTML file attachment', html, 'text/html')
+        reporter.createAttachment('HTML file attachment', html, 'text/html')
     })
 })

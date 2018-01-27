@@ -1,8 +1,8 @@
 'use strict'
-const feature = require('./../../../build/runtime').feature
+const reporter = require('./../../../build/reporter')
 
 describe('A passing Suite', () => {
     it('with passing test', () => {
-        feature(browser.desiredCapabilities.browserName)
+        reporter.feature(browser.desiredCapabilities.browserName)
     })
 })
