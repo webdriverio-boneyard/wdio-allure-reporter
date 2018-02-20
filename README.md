@@ -45,7 +45,7 @@ exports.config = {
 * `feature(featureName)` – assign feature to test
 * `story(storyName)` – assign user story to test
 * `addEnvironment(name, value)` – save environment value
-* `createAttachement(name, content, [type])` – save attachment to test.
+* `createAttachment(name, content, [type])` – save attachment to test.
     * `name` (*String*) - attachment name.
     * `content` – attachment content.
     * `type` (*String*, optional) – attachment MIME-type, `text/plain` by default
