@@ -1,5 +1,6 @@
 import { expect } from 'chai'
 import {clean, getResultFiles, run} from '../helper'
+import cheerio from 'cheerio'
 
 describe('create attachment', () => {
     beforeEach(clean)
@@ -23,6 +24,14 @@ describe('create attachment', () => {
             expect(htmlAttachment, 'HTML attachment file was not generated').to.have.lengthOf(1)
             expect(result('test-case attachment[title="HTML file attachment"]'),
                 'HTML attachment file was not added to general xml report').to.have.lengthOf(1)
+
+            const pngAttachment = getResultFiles('png')
+            expect(pngAttachment, 'PNG attachment file was not generated').to.have.lengthOf(1)
+            expect(result('test-case attachment[title="PNG file attachment"]'),
+                'PNG attachment file was not added to general xml report').to.have.lengthOf(1)
+
+            const pngAttachmentResult = cheerio.load(result('test-case attachment[title="PNG file attachment"]')[0])
+            expect(pngAttachmentResult('attachment').attr('size')).to.equal('134596')
         })
     })
 })

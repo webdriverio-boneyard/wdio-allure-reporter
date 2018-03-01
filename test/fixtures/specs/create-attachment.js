@@ -1,6 +1,7 @@
 'use strict'
 
 const reporter = require('./../../../build/reporter')
+const fs = require('fs')
 
 describe('Suite with attachments', () => {
     it('Add attachment with plain text attachment', () => {
@@ -23,5 +24,11 @@ describe('Suite with attachments', () => {
             '</html>\n'
 
         reporter.createAttachment('HTML file attachment', html, 'text/html')
+    })
+
+    it('Add attachment with PNG type', () => {
+        const png = fs.readFileSync('./test/resources/image.png', 'base64')
+
+        reporter.createAttachment('PNG file attachment', png, 'image/png')
     })
 })
