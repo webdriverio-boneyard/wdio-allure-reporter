@@ -31,7 +31,8 @@ describe('create attachment', () => {
                 'PNG attachment file was not added to general xml report').to.have.lengthOf(1)
 
             const pngAttachmentResult = cheerio.load(result('test-case attachment[title="PNG file attachment"]')[0])
-            expect(pngAttachmentResult('attachment').attr('size')).to.equal('134596')
+            expect(pngAttachmentResult('attachment').attr('size'), 
+                'PNG attachment did not have the correct size').to.equal('134596')
         })
     })
 })
