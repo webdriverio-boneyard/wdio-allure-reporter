@@ -12,7 +12,7 @@ describe('Cucumber test cases', () => {
         })
     })
 
-    it.only('should detect passed case', () => {
+    it('should detect passed case', () => {
         return runCucumber(['passing']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]

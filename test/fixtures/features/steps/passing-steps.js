@@ -11,4 +11,8 @@ defineSupportCode(({ Given, When, Then }) => {
             expect(value).to.be.equal(num.toString())
         })
     })
+
+    Then('I should run failing step', () => {
+        expect(true).to.be.equal(false)
+    })
 })
