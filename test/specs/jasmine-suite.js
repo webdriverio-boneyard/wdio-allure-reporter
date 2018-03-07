@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { clean, runMocha } from '../helper'
 
-describe('Suites', () => {
+describe('jasmine suites', () => {
     beforeEach(clean)
 
     it('should report two suites from one file', () => {

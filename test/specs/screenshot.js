@@ -1,11 +1,11 @@
 import { expect } from 'chai'
-import { clean, run, getResultFiles } from '../helper'
+import { clean, runMocha, getResultFiles } from '../helper'
 
 describe('Screenshots', () => {
     beforeEach(clean)
 
     it('can be taken during a test', () => {
-        return run(['screenshot']).then((results) => {
+        return runMocha(['screenshot']).then((results) => {
             expect(results).to.have.lengthOf(1)
             expect(results[0]('test-case')).to.have.lengthOf(1)
 
@@ -16,7 +16,7 @@ describe('Screenshots', () => {
     })
 
     it('can take screenshot before each test and attach it accordingly', () => {
-        return run(['screenshot-before-each']).then((results) => {
+        return runMocha(['screenshot-before-each']).then((results) => {
             expect(results[0]('test-case')).to.have.lengthOf(2)
             expect(results[0]('test-case attachment[title="Screenshot"]')).to.have.lengthOf(2)
 
@@ -26,7 +26,7 @@ describe('Screenshots', () => {
     })
 
     it('can be taken in an "before all" hook', () => {
-        return run(['screenshot-before-all']).then((results) => {
+        return runMocha(['screenshot-before-all']).then((results) => {
             expect(results).to.have.lengthOf(1)
 
             let screenshotFiles = getResultFiles(['jpg', 'png'])
@@ -35,7 +35,7 @@ describe('Screenshots', () => {
     })
 
     it('can be taken in an "after" hook', () => {
-        return run(['screenshot-after']).then((results) => {
+        return runMocha(['screenshot-after']).then((results) => {
             expect(results).to.have.lengthOf(1)
             expect(results[0]('test-case')).to.have.lengthOf(2)
 
@@ -46,7 +46,7 @@ describe('Screenshots', () => {
     })
 
     it('can be taken in an "after each" hook', () => {
-        return run(['screenshot-after-each']).then((results) => {
+        return runMocha(['screenshot-after-each']).then((results) => {
             expect(results).to.have.lengthOf(1)
             expect(results[0]('test-case')).to.have.lengthOf(1)
 

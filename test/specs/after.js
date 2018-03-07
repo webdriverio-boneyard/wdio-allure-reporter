@@ -1,11 +1,11 @@
 import { expect } from 'chai'
-import { clean, run } from '../helper'
+import { clean, runMocha } from '../helper'
 
 describe('after hooks', () => {
     beforeEach(clean)
 
     it('should not appear in results when it is passing', () => {
-        return run(['after-all-passing']).then((results) => {
+        return runMocha(['after-all-passing']).then((results) => {
             const result = results[0]
             expect(result('test-case')).to.have.lengthOf(1)
             expect(result('test-case > name').text()).to.equal('with passing test')
@@ -14,7 +14,7 @@ describe('after hooks', () => {
     })
 
     it('should report failed after-all hook', () => {
-        return run(['after-all-failing']).then((results) => {
+        return runMocha(['after-all-failing']).then((results) => {
             expect(results).to.have.lengthOf(1)
 
             const result = results[0]
@@ -31,7 +31,7 @@ describe('after hooks', () => {
     })
 
     it('should report after-each hook', () => {
-        return run(['after-each-failing']).then((results) => {
+        return runMocha(['after-each-failing']).then((results) => {
             expect(results).to.have.lengthOf(1)
 
             const result = results[0]

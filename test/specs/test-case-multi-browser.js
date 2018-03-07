@@ -1,11 +1,11 @@
 import { expect } from 'chai'
-import { clean, run } from '../helper'
+import { clean, runMocha } from '../helper'
 
 describe('Multi-browser test case', () => {
     beforeEach(clean)
 
     it('should detect different browsers parameter for same test case', () => {
-        return run(['test-case-multi-browser'], './test/fixtures/wdio-multi-browser.conf.js').then((results) => {
+        return runMocha(['test-case-multi-browser'], './test/fixtures/wdio.conf/wdio-multi-browser.conf.js').then((results) => {
             expect(results).to.have.lengthOf(2)
             const result1 = results[0]
             const result2 = results[1]

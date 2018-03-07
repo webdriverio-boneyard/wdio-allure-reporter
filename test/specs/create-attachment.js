@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import {clean, getResultFiles, run} from '../helper'
+import {clean, getResultFiles, runMocha} from '../helper'
 import cheerio from 'cheerio'
 
 describe('create attachment', () => {
     beforeEach(clean)
 
     it('should create attachments in test cases', () => {
-        return run(['create-attachment']).then((results) => {
+        return runMocha(['create-attachment']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 

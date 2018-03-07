@@ -1,11 +1,11 @@
 import { expect } from 'chai'
-import { clean, runMocha } from '../helper'
+import { clean, runJasmine } from '../helper'
 
-describe('test cases', () => {
+describe('jasmine test cases', () => {
     beforeEach(clean)
 
     it('should detect passed test case', () => {
-        return runMocha(['passing']).then((results) => {
+        return runJasmine(['passing']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 
@@ -17,7 +17,7 @@ describe('test cases', () => {
     })
 
     it('should detect broken test case', () => {
-        return runMocha(['broken']).then((results) => {
+        return runJasmine(['broken']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 
@@ -29,8 +29,8 @@ describe('test cases', () => {
         })
     })
 
-    it('should detect failed case', () => {
-        return runMocha(['failing']).then((results) => {
+    it('should detect passed failed case', () => {
+        return runJasmine(['failing']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 
@@ -40,8 +40,9 @@ describe('test cases', () => {
         })
     })
 
-    it('should detect pending test cases', () => {
-        return runMocha(['pending']).then((results) => {
+    // Bug https://github.com/webdriverio/wdio-allure-reporter/issues/95
+    xit('should detect pending test cases', () => {
+        return runJasmine(['pending']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 
@@ -52,20 +53,6 @@ describe('test cases', () => {
             expect(result('test-case').eq(1).attr('status')).to.be.equal('pending')
 
             expect(result('test-case').eq(1).attr('start')).to.be.equal(result('test-case').eq(1).attr('stop'))
-        })
-    })
-
-    it('should detect analytics labels in test case', () => {
-        return runMocha(['passing']).then((results) => {
-            expect(results).to.have.lengthOf(1)
-            const result = results[0]
-
-            expect(result('ns2\\:test-suite > name').text()).to.be.equal('A passing Suite')
-            expect(result('test-case > name').text()).to.be.equal('with passing test')
-            expect(result('test-case').attr('status')).to.be.equal('passed')
-            expect(result('test-case parameter[kind="environment-variable"]')).to.have.lengthOf(2)
-            expect(result('test-case label[name="language"]').eq(0).attr('value')).to.be.equal('javascript')
-            expect(result('test-case label[name="framework"]').eq(0).attr('value')).to.be.equal('wdio')
         })
     })
 })

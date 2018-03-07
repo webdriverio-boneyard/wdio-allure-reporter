@@ -1,11 +1,11 @@
 import { expect } from 'chai'
-import { clean, run } from '../helper'
+import { clean, runMocha } from '../helper'
 
 describe('Description', () => {
     beforeEach(clean)
 
     it('should detect description in test cases', () => {
-        return run(['description']).then((results) => {
+        return runMocha(['description']).then((results) => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 

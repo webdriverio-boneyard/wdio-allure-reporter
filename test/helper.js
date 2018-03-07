@@ -24,28 +24,31 @@ export function clean () {
     return del(resultsDir)
 }
 
-export function run (specs, wdioConfigPath) {
-    disableOutput()
-    if (!wdioConfigPath) {
-        wdioConfigPath = './test/fixtures/wdio.conf.js'
-    }
-    const launcher = new Launcher(wdioConfigPath, {
-        specs: specs.map(spec => `./test/fixtures/specs/${spec}.js`)
-    })
+export function runMocha (specs, wdioConfigPath) {
+    const features = specs.map(spec => `./test/fixtures/specs/${spec}.js`)
+    const path = wdioConfigPath || './test/fixtures/wdio.conf/wdio.conf.mocha.js'
 
-    return launcher.run().then(() => {
-        enableOutput()
-        return getResults()
-    })
+    return run(features, path)
 }
 
-export function runFeatures (features, wdioConfigPath) {
+export function runCucumber (specs) {
+    const features = specs.map(feature => `./test/fixtures/features/${feature}.feature`)
+    const wdioConfigPath = './test/fixtures/wdio.conf/wdio.conf.cucumber.js'
+
+    return run(features, wdioConfigPath)
+}
+
+export function runJasmine (specs) {
+    const features = specs.map(spec => `./test/fixtures/specs/${spec}.js`)
+    const wdioConfigPath = './test/fixtures/wdio.conf/wdio.conf.jasmine.js'
+
+    return run(features, wdioConfigPath)
+}
+
+function run (specs, wdioConfigPath) {
     disableOutput()
-    if (!wdioConfigPath) {
-        wdioConfigPath = './test/fixtures/wdio.conf.cucumber.js'
-    }
     const launcher = new Launcher(wdioConfigPath, {
-        specs: features.map(feature => `./test/fixtures/features/${feature}.feature`)
+        specs: specs
     })
 
     return launcher.run().then(() => {
