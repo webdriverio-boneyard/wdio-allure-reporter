@@ -7,7 +7,8 @@ defineSupportCode(({ Given, When, Then }) => {
     When('I click the clickable region', () => browser.click('#clickable'))
 
     Then('I should get the result: {int}', (num) => {
-        const result = browser.getValue('#result')
-        expect(result).to.be.equal(num.toString())
+        browser.getValue('#result').then((value) => {
+            expect(value).to.be.equal(num.toString())
+        })
     })
 })
