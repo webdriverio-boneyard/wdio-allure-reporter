@@ -20,6 +20,10 @@ export function getResultFiles (patterns) {
         patterns.some(pattern => file.endsWith('.' + pattern)))
 }
 
+export function getResultFileValue (fileName) {
+    return fs.readFileSync(`${resultsDir}/${fileName}`).toString()
+}
+
 export function clean () {
     return del(resultsDir)
 }

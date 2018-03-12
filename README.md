@@ -32,7 +32,8 @@ exports.config = {
     reporters: ['allure'],
     reporterOptions: {
 		allure: {
-			outputDir: 'allure-results'
+            outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
 		}
 	},
 	// ...
@@ -40,6 +41,7 @@ exports.config = {
 ```
 
 `outputDir` defaults to `./allure-results`. After a test run is complete, you will find that this directory has been populated with an `.xml` file for each spec, plus a number of `.txt` and `.png` files and other attachments.
+`disableWebdriverStepsReporting` - optional parameter(false by default), in order to log only custom steps to the reporter.
 
 ## Supported Allure API
 * `feature(featureName)` – assign feature to test
@@ -52,6 +54,10 @@ exports.config = {
 * `addDescription(description, [type])` – add description to test.
     * `description` (*String*) - description of the test.
     * `type` (*String*, optional) – description type, `text` by default. Values ['text', 'html','markdown']
+* `createStep(title, body, [bodyLabel])` - add step to test.
+    * `title` (*String*) - name of the step.
+    * `body` (*String*) - body of the step appear as attachment under step
+    * `bodyLabel` (*String*, optional) - body label, `attachment` by default.
 ### Usage
 Allure Api can be accessed using:
 ES5
