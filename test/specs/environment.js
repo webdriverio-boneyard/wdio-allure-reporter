@@ -13,15 +13,10 @@ describe('environments', () => {
             expect(result('test-case:first-of-type > name').text()).to.be.equal('First case')
             expect(result('test-case:last-of-type > name').text()).to.be.equal('Second case')
             expect(result('test-case:first-of-type parameter')).to.have.lengthOf(4)
-            expect(result('test-case:last-of-type parameter')).to.have.lengthOf(3)
+            expect(result('test-case:last-of-type parameter')).to.have.lengthOf(4)
 
-            expect(result('test-case:first-of-type parameter').eq(2).attr('name')).to.be.equal('BROWSER')
-            expect(result('test-case:first-of-type parameter').eq(2).attr('value')).to.be.equal('Chrome')
-            expect(result('test-case:first-of-type parameter').eq(3).attr('name')).to.be.equal('ENVIRONMENT')
-            expect(result('test-case:first-of-type parameter').eq(3).attr('value')).to.be.equal('TEST')
-
-            expect(result('test-case:last-of-type parameter').eq(2).attr('name')).to.be.equal('BROWSER')
-            expect(result('test-case:last-of-type parameter').eq(2).attr('value')).to.be.equal('Firefox')
+            expect(result('test-case parameter[name="ENVIRONMENT"]').eq(0).attr('value')).to.be.equal('TEST')
+            expect(result('test-case parameter[name="ENVIRONMENT"]').eq(1).attr('value')).to.be.equal('Firefox')
         })
     })
 })
