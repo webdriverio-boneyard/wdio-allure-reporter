@@ -1,7 +1,9 @@
 WDIO Allure Reporter [![Build Status](https://travis-ci.org/webdriverio/wdio-allure-reporter.svg?branch=master)](https://travis-ci.org/webdriverio/wdio-allure-reporter) [![Code Climate](https://codeclimate.com/github/webdriverio/wdio-allure-reporter/badges/gpa.svg)](https://codeclimate.com/github/webdriverio/wdio-allure-reporter)
 ====================
 
-> A WebdriverIO reporter plugin to create [Allure Test Reports](http://allure.qatools.ru/).
+> A WebdriverIO reporter plugin to create [Allure Test Reports](https://docs.qameta.io/allure/).
+
+![screenshot 2016-02-05 10.15.57.png](./docs/images/generatedReport.png)
 
 ## Installation
 
@@ -123,10 +125,6 @@ For more information on WebdriverIO see the [homepage](http://webdriver.io).
 ### Integration Tests
 Integration Tests are running webdriverio multiple times using the wdio-allure-reporter and verifying the output.
 
-Run http server to serve test pages:
-```
-./node_modules/.bin/static ./test/fixtures
-```
 Run tests:
 ```
 npm test
@@ -136,7 +134,6 @@ npm test
   ```
  npm run report
   ```
- This will generate a report (by default in ./allure-report), and open it in your browser:
- ![screenshot 2016-02-05 10.15.57.png](./docs/images/browser.png)
-
+ This will generate a report (by default in ./allure-report), and open it in your browser 
+ 
  Because before each test ./.alure-result folder is cleaned, so you should generate report only for one test by setting it in ./test/mocha.opts
