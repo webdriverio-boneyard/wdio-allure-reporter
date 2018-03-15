@@ -10,7 +10,7 @@ The easiest way is to keep `wdio-allure-reporter` as a devDependency in your `pa
 ```json
 {
   "devDependencies": {
-    "wdio-allure-reporter": "~0.1.2"
+    "wdio-allure-reporter": "~0.5.0"
   }
 }
 ```
@@ -136,7 +136,7 @@ npm test
   ```
  npm run report
   ```
- This will generate a report (by default in ./allure-report), and open it in your browser: 
+ This will generate a report (by default in ./allure-report), and open it in your browser:
  ![screenshot 2016-02-05 10.15.57.png](./docs/images/browser.png)
- 
+
  Because before each test ./.alure-result folder is cleaned, so you should generate report only for one test by setting it in ./test/mocha.opts
