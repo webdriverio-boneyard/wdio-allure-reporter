@@ -32,4 +32,15 @@ describe('Multi-browser test case', () => {
             expect([browserName1, browserName2]).to.have.members(['{"browserName":"phantomjs"}', '{"browserName":"chrome"}'])
         })
     })
+
+    it('should add browser name to argument', () => {
+        return runMocha(['test-case-multi-browser'], './test/fixtures/wdio.conf/wdio-multi-browser.conf.js').then((results) => {
+            expect(results).to.have.lengthOf(2)
+            const result1 = results[0]
+            const result2 = results[1]
+            const browserName1 = result1('test-case parameter[name="browser"]').attr('value')
+            const browserName2 = result2('test-case parameter[name="browser"]').attr('value')
+            expect([browserName1, browserName2]).to.have.members(['phantomjs', 'chrome'])
+        })
+    })
 })
