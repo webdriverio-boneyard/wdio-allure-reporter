@@ -33,3 +33,4 @@ screenshots/
 
 # JetBrains IDE
 .idea
+package-lock.json
