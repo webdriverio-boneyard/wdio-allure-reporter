@@ -3,6 +3,9 @@ import path from 'path'
 import del from 'del'
 import Launcher from 'webdriverio/build/lib/launcher'
 import cheerio from 'cheerio'
+import staticServer from 'node-static'
+import enableDestroy from 'server-destroy'
+import http from 'http'
 
 const resultsDir = path.join(__dirname, '../.allure-results')
 
@@ -50,6 +53,7 @@ export function runJasmine (specs) {
 }
 
 function run (specs, wdioConfigPath) {
+    const testHttpServer = startTestHttpServer()
     disableOutput()
     const launcher = new Launcher(wdioConfigPath, {
         specs: specs
@@ -57,6 +61,7 @@ function run (specs, wdioConfigPath) {
 
     return launcher.run().then(() => {
         enableOutput()
+        stopTestHttpServer(testHttpServer)
         return getResults()
     })
 }
@@ -92,4 +97,21 @@ function enableOutput () {
     console.log = originalConsole.log
     console.warn = originalConsole.warn
     console.error = originalConsole.error
+}
+
+function startTestHttpServer () {
+    const fileServer = new staticServer.Server('./test/fixtures/')
+
+    const server = http.createServer(function (request, response) {
+        request.addListener('end', function () {
+            fileServer.serve(request, response)
+        }).resume()
+    })
+    server.listen(54392)
+    enableDestroy(server)
+    return server
+}
+
+function stopTestHttpServer (server) {
+    server.destroy()
 }

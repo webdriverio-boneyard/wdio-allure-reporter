@@ -3,8 +3,5 @@ language: node_js
 node_js:
   - '6.10'
 
-before_script:
-  - ./node_modules/.bin/static ./test/fixtures 2>&1 >/dev/null &
-
 script:
   - npm run test

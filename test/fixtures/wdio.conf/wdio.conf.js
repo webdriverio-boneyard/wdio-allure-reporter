@@ -3,7 +3,7 @@ allureReporter.reporterName = 'allure'
 
 exports.getConfig = function () {
     return {
-        baseUrl: 'http://localhost:8080',
+        baseUrl: 'http://localhost:54392',
         coloredLogs: true,
         logLevel: 'silent',
         services: ['phantomjs'],
