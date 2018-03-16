@@ -7,12 +7,14 @@ defineSupportCode(({ Given, When, Then }) => {
     When('I click the clickable region', () => browser.click('#clickable'))
 
     Then('I should get the result: {int}', (num) => {
-        browser.getValue('#result').then((value) => {
-            expect(value).to.be.equal(num.toString())
-        })
+        expect(num).to.be.equal(1)
     })
 
-    Then('I should run failing step', () => {
+    Then('I run failing step', () => {
         expect(true).to.be.equal(false)
+    })
+
+    Then('I see steps after as pending', () => {
+        expect(true).to.be.equal(true)
     })
 })

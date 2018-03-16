@@ -17,9 +17,13 @@ describe('Cucumber test cases', () => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 
-            expect(result('test-case').eq(0).attr('status')).to.be.equal('passed')
-            expect(result('test-case').eq(1).attr('status')).to.be.equal('passed')
+            expect(result('test-case').eq(0).attr('status')).to.be.equal('undefined')
+            expect(result('test-case').eq(1).attr('status')).to.be.equal('undefined')
             expect(result('test-case').eq(2).attr('status')).to.be.equal('passed')
+            expect(result('test-case').eq(3).attr('status')).to.be.equal('passed')
+            expect(result('test-case').eq(4).attr('status')).to.be.equal('passed')
+            expect(result('test-case').eq(5).attr('status')).to.be.equal('undefined')
+            expect(result('test-case').eq(6).attr('status')).to.be.equal('undefined')
         })
     })
 
@@ -28,7 +32,13 @@ describe('Cucumber test cases', () => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 
-            expect(result('test-case').eq(2).attr('status')).to.be.equal('failed')
+            expect(result('test-case').eq(0).attr('status')).to.be.equal('undefined')
+            expect(result('test-case').eq(1).attr('status')).to.be.equal('undefined')
+            expect(result('test-case').eq(2).attr('status')).to.be.equal('passed')
+            expect(result('test-case').eq(3).attr('status')).to.be.equal('passed')
+            expect(result('test-case').eq(4).attr('status')).to.be.equal('failed')
+            expect(result('test-case').eq(5).attr('status')).to.be.equal('undefined')
+            expect(result('test-case').eq(6).attr('status')).to.be.equal('undefined')
         })
     })
 
@@ -37,7 +47,29 @@ describe('Cucumber test cases', () => {
             expect(results).to.have.lengthOf(1)
             const result = results[0]
 
-            expect(result('test-case').eq(2).attr('status')).to.be.equal('broken')
+            expect(result('test-case').eq(0).attr('status')).to.be.equal('undefined')
+            expect(result('test-case').eq(1).attr('status')).to.be.equal('undefined')
+            expect(result('test-case').eq(2).attr('status')).to.be.equal('passed')
+            expect(result('test-case').eq(3).attr('status')).to.be.equal('passed')
+            expect(result('test-case').eq(4).attr('status')).to.be.equal('broken')
+            expect(result('test-case').eq(5).attr('status')).to.be.equal('undefined')
+            expect(result('test-case').eq(6).attr('status')).to.be.equal('undefined')
+        })
+    })
+
+    it('should detect pending case', () => {
+        return runCucumber(['withPending']).then((results) => {
+            expect(results).to.have.lengthOf(1)
+            const result = results[0]
+
+            expect(result('test-case').eq(0).attr('status')).to.be.equal('undefined')
+            expect(result('test-case').eq(1).attr('status')).to.be.equal('undefined')
+            expect(result('test-case').eq(2).attr('status')).to.be.equal('passed')
+            expect(result('test-case').eq(3).attr('status')).to.be.equal('passed')
+            expect(result('test-case').eq(4).attr('status')).to.be.equal('failed')
+            expect(result('test-case').eq(5).attr('status')).to.be.equal('pending')
+            expect(result('test-case').eq(6).attr('status')).to.be.equal('undefined')
+            expect(result('test-case').eq(7).attr('status')).to.be.equal('undefined')
         })
     })
 })

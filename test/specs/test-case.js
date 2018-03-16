@@ -48,8 +48,6 @@ describe('test cases', () => {
             expect(result('ns2\\:test-suite > name').text()).to.be.equal('A pending Suite')
             expect(result('test-case > name').eq(0).text()).to.be.equal('pending test')
             expect(result('test-case').eq(0).attr('status')).to.be.equal('pending')
-            expect(result('test-case > name').eq(1).text()).to.be.equal('test without function')
-            expect(result('test-case').eq(1).attr('status')).to.be.equal('pending')
 
             expect(result('test-case').eq(1).attr('start')).to.be.equal(result('test-case').eq(1).attr('stop'))
         })

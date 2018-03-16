@@ -38,11 +38,11 @@ export function runMocha (specs, wdioConfigPath) {
     return run(features, path)
 }
 
-export function runCucumber (specs) {
+export function runCucumber (specs, wdioConfigPath) {
     const features = specs.map(feature => `./test/fixtures/features/${feature}.feature`)
-    const wdioConfigPath = './test/fixtures/wdio.conf/wdio.conf.cucumber.js'
+    const path = wdioConfigPath || './test/fixtures/wdio.conf/wdio.conf.cucumber.js'
 
-    return run(features, wdioConfigPath)
+    return run(features, path)
 }
 
 export function runJasmine (specs) {

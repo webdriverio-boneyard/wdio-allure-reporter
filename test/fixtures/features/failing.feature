@@ -7,4 +7,4 @@ Feature: A failing feature
     Scenario: A failing scenario
         Given I visit "/index.html"
         When I click the clickable region
-        Then I should run failing step
+        Then I run failing step
