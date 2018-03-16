@@ -9,4 +9,6 @@ baseConfig.cucumberOpts = {
     ]
 }
 
+baseConfig.reporterOptions.allure.useCucumberStepReporter = true
+
 exports.config = baseConfig
