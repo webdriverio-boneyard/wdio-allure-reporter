@@ -8,6 +8,7 @@ describe('cucumber test scenario with steps', () => {
 
     it('should add feature labels for test cases', () => {
         return runCucumber(['passing'], configPath).then((results) => {
+            expect(results).to.have.lengthOf(1)
             const result = results[0]
             expect(result('test-case label[name="feature"]').eq(0).attr('value')).to.equal('A passing feature')
         })

@@ -68,7 +68,7 @@
     "np": "~2.18.0",
     "npm-run-all": "~4.1.0",
     "server-destroy": "^1.0.1",
-    "wdio-cucumber-framework": "^1.0.3",
+    "wdio-cucumber-framework": "^2.0.1",
     "wdio-jasmine-framework": "^0.3.2",
     "wdio-mocha-framework": "^0.5.13",
     "wdio-phantomjs-service": "^0.2.2",
