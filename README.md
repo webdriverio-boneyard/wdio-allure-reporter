@@ -62,6 +62,7 @@ exports.config = {
     * `title` (*String*) - name of the step.
     * `body` (*String*) - body of the step appear as attachment under step
     * `bodyLabel` (*String*, optional) - body label, `attachment` by default.
+    * `status` (*String*, optional, default 'passed') - step status. Must be "failed", "passed" or "broken"
 ### Usage
 Allure Api can be accessed using:
 ES5
@@ -136,6 +137,6 @@ npm test
   ```
  npm run report
   ```
- This will generate a report (by default in ./allure-report), and open it in your browser 
- 
+ This will generate a report (by default in ./allure-report), and open it in your browser
+
  Because before each test ./.alure-result folder is cleaned, so you should generate report only for one test by setting it in ./test/mocha.opts
