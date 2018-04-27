@@ -58,7 +58,7 @@ exports.config = {
 * `addDescription(description, [type])` – add description to test.
     * `description` (*String*) - description of the test.
     * `type` (*String*, optional) – description type, `text` by default. Values ['text', 'html','markdown']
-* `createStep(title, body, [bodyLabel])` - add step to test.
+* `createStep(title, body, [bodyLabel], [status])` - add step to test.
     * `title` (*String*) - name of the step.
     * `body` (*String*) - body of the step appear as attachment under step
     * `bodyLabel` (*String*, optional) - body label, `attachment` by default.
