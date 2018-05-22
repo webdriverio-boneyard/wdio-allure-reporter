@@ -55,4 +55,24 @@ describe('Screenshots', () => {
             expect(results[0]('test-case attachment[title="Screenshot"]')).to.have.lengthOf(1)
         })
     })
+
+    it('should not attach .png while disableWebdriverScreenshotsReporting enabled', () => {
+        return runMocha(['screenshot'], './test/fixtures/wdio.conf/wdio.conf.mocha.noscr.js').then((results) => {
+            expect(results).to.have.lengthOf(1)
+            expect(results[0]('test-case')).to.have.lengthOf(1)
+
+            const screenshotFiles = getResultFiles('png')
+            expect(screenshotFiles, 'screenshot file is exist').to.have.lengthOf(0)
+            expect(results[0]('test-case attachment[title="Screenshot"]')).to.have.lengthOf(0)
+        })
+    })
+
+    it('should not be reported while both disableWebdriverScreenshotsReporting and disableWebdriverStepsReporting are enabled', () => {
+        return runMocha(['screenshot'], './test/fixtures/wdio.conf/wdio.conf.mocha.noinfo.js').then((results) => {
+            expect(results).to.have.lengthOf(1)
+            expect(results[0]('test-case')).to.have.lengthOf(1)
+
+            expect(results[0]('test-case attachment[title="Response (screenshot)"]')).to.have.lengthOf(0)
+        })
+    })
 })
