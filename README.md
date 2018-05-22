@@ -45,9 +45,9 @@ exports.config = {
 ```
 
 - `outputDir` defaults to `./allure-results`. After a test run is complete, you will find that this directory has been populated with an `.xml` file for each spec, plus a number of `.txt` and `.png` files and other attachments.
-- `disableWebdriverStepsReporting` - optional parameter(false by default), in order to log only custom steps to the reporter.
-- `disableWebdriverScreenshotsReporting` - optional parameter(false by default), in order to not attach screenshots to the reporter.
-- `useCucumberStepReporter` - optional parameter(false by default), use this if you want to report Cucumber scenario steps as allure steps(instead of tests) in your report. DON'T use with mocha or jasmine - results will be unpredictable.
+- `disableWebdriverStepsReporting` - optional parameter(`false` by default), in order to log only custom steps to the reporter.
+- `disableWebdriverScreenshotsReporting` - optional parameter(`false` by default), in order to not attach screenshots to the reporter.
+- `useCucumberStepReporter` - optional parameter(`false` by default), use this if you want to report Cucumber scenario steps as allure steps(instead of tests) in your report. DON'T use with mocha or jasmine - results will be unpredictable.
 
 ## Supported Allure API
 * `feature(featureName)` – assign feature to test
