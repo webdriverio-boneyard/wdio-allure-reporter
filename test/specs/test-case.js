@@ -40,19 +40,6 @@ describe('test cases', () => {
         })
     })
 
-    it('should detect pending test cases', () => {
-        return runMocha(['pending']).then((results) => {
-            expect(results).to.have.lengthOf(1)
-            const result = results[0]
-
-            expect(result('ns2\\:test-suite > name').text()).to.be.equal('A pending Suite')
-            expect(result('test-case > name').eq(0).text()).to.be.equal('pending test')
-            expect(result('test-case').eq(0).attr('status')).to.be.equal('pending')
-
-            expect(result('test-case').eq(1).attr('start')).to.be.equal(result('test-case').eq(1).attr('stop'))
-        })
-    })
-
     it('should detect analytics labels in test case', () => {
         return runMocha(['passing']).then((results) => {
             expect(results).to.have.lengthOf(1)
