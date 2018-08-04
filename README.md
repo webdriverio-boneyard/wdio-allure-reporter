@@ -52,6 +52,7 @@ exports.config = {
 ## Supported Allure API
 * `feature(featureName)` – assign feature to test
 * `story(storyName)` – assign user story to test
+* `severity(value)` – assign severity to test
 * `addEnvironment(name, value)` – save environment value
 * `createAttachment(name, content, [type])` – save attachment to test.
     * `name` (*String*) - attachment name.
