@@ -53,4 +53,15 @@ describe('test cases', () => {
             expect(result('test-case label[name="framework"]').eq(0).attr('value')).to.be.equal('wdio')
         })
     })
+
+    it('should detect thread', () => {
+        return runMocha(['passing']).then((results) => {
+            expect(results).to.have.lengthOf(1)
+            const result = results[0]
+
+            expect(result('ns2\\:test-suite > name').text()).to.be.equal('A passing Suite')
+            expect(result('test-case > name').text()).to.be.equal('with passing test')
+            expect(result('test-case label[name="thread"]')).to.have.lengthOf(1)
+        })
+    })
 })
