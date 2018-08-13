@@ -28,6 +28,7 @@ describe('cucumber test scenario with steps', () => {
             expect(result('test-case > steps > step').eq(1).attr('status')).to.be.equal('passed')
             expect(result('test-case > steps > step > name').eq(2).text()).to.be.equal('I should get the result: 1')
             expect(result('test-case > steps > step').eq(2).attr('status')).to.be.equal('passed')
+            expect(result('test-case label[name="thread"]')).to.have.lengthOf(1)
         })
     })
 

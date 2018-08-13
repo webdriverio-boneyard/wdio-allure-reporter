@@ -40,7 +40,7 @@ describe('Multi-browser test case', () => {
             const result2 = results[1]
             const browserName1 = result1('test-case parameter[name="browser"]').attr('value')
             const browserName2 = result2('test-case parameter[name="browser"]').attr('value')
-            expect([browserName1, browserName2]).to.have.members(['phantomjs', 'chrome'])
+            expect([browserName1, browserName2]).to.have.members(['phantomjs-42', 'chrome-65'])
         })
     })
 })
