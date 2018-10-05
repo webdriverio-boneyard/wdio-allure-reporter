@@ -53,6 +53,8 @@ exports.config = {
 * `feature(featureName)` – assign feature to test
 * `story(storyName)` – assign user story to test
 * `severity(value)` – assign severity to test
+* `issue(value)` – assign issue id to test
+* `testId(value)` – assign TMS test id to test
 * `addEnvironment(name, value)` – save environment value
 * `createAttachment(name, content, [type])` – save attachment to test.
     * `name` (*String*) - attachment name.
