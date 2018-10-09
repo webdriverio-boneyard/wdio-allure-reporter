@@ -1,4 +1,4 @@
-WDIO Allure Reporter [![Build Status](https://travis-ci.org/webdriverio/wdio-allure-reporter.svg?branch=master)](https://travis-ci.org/webdriverio/wdio-allure-reporter) [![Code Climate](https://codeclimate.com/github/webdriverio/wdio-allure-reporter/badges/gpa.svg)](https://codeclimate.com/github/webdriverio/wdio-allure-reporter)
+WDIO Allure Reporter [![Build Status](https://travis-ci.org/webdriverio-boneyard/wdio-allure-reporter.svg?branch=master)](https://travis-ci.org/webdriverio-boneyard/wdio-allure-reporter) [![Code Climate](https://codeclimate.com/github/webdriverio/wdio-allure-reporter/badges/gpa.svg)](https://codeclimate.com/github/webdriverio/wdio-allure-reporter)
 ====================
 
 > A WebdriverIO reporter plugin to create [Allure Test Reports](https://docs.qameta.io/allure/).
