@@ -56,6 +56,7 @@ exports.config = {
 * `issue(value)` – assign issue id to test
 * `testId(value)` – assign TMS test id to test
 * `addEnvironment(name, value)` – save environment value
+* `addArgument(name, value)` - add additional argument to test
 * `createAttachment(name, content, [type])` – save attachment to test.
     * `name` (*String*) - attachment name.
     * `content` – attachment content.
