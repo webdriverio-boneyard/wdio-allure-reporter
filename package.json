@@ -72,6 +72,8 @@
     "npm-run-all": "~4.1.0",
     "rimraf": "^2.6.2",
     "server-destroy": "^1.0.1",
+    "sinon": "^6.3.5",
+    "sinon-chai": "^3.2.0",
     "wdio-cucumber-framework": "^2.2.7",
     "wdio-jasmine-framework": "^0.3.6",
     "wdio-mocha-framework": "^0.6.3",
