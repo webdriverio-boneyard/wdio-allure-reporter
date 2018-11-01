@@ -84,4 +84,29 @@ describe('cucumber test scenario with steps', () => {
             expect(result('test-case > steps > step').eq(3).attr('status')).to.be.equal('pending')
         })
     })
+
+    it('should report one test per scenario - scenario pending case', () => {
+        return runCucumber(['withPendingScenario'], configPath).then((results) => {
+            expect(results).to.have.lengthOf(1)
+            const result = results[0]
+
+            expect(result('test-case')).to.have.lengthOf(2)
+            expect(result('test-case').eq(0).attr('status')).to.be.equal('failed')
+            expect(result('test-case').eq(1).attr('status')).to.be.equal('pending')
+            expect(result('test-case:nth-child(1) > steps > step')).to.have.lengthOf(3)
+            expect(result('test-case:nth-child(2) > steps > step')).to.have.lengthOf(3)
+            expect(result('test-case:nth-child(1) > steps > step > name').eq(0).text()).to.be.equal('I visit "/index.html"')
+            expect(result('test-case:nth-child(1) > steps > step').eq(0).attr('status')).to.be.equal('passed')
+            expect(result('test-case:nth-child(1) > steps > step > name').eq(1).text()).to.be.equal('I click the clickable region')
+            expect(result('test-case:nth-child(1) > steps > step').eq(1).attr('status')).to.be.equal('passed')
+            expect(result('test-case:nth-child(1) > steps > step > name').eq(2).text()).to.be.equal('I run failing step')
+            expect(result('test-case:nth-child(1) > steps > step').eq(2).attr('status')).to.be.equal('failed')
+            expect(result('test-case:nth-child(2) > steps > step > name').eq(0).text()).to.be.equal('I visit "/index.html"')
+            expect(result('test-case:nth-child(2) > steps > step').eq(0).attr('status')).to.be.equal('pending')
+            expect(result('test-case:nth-child(2) > steps > step > name').eq(1).text()).to.be.equal('I click the clickable region')
+            expect(result('test-case:nth-child(2) > steps > step').eq(1).attr('status')).to.be.equal('pending')
+            expect(result('test-case:nth-child(2) > steps > step > name').eq(2).text()).to.be.equal('I run failing step')
+            expect(result('test-case:nth-child(2) > steps > step').eq(2).attr('status')).to.be.equal('pending')
+        })
+    })
 })

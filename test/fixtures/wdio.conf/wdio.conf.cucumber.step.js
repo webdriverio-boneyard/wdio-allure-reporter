@@ -6,7 +6,8 @@ baseConfig.cucumberOpts = {
     require: ['test/fixtures/features/steps/passing-steps.js', 'test/fixtures/features/steps/hooks.js'],
     compiler: [
         'js:babel-register'
-    ]
+    ],
+    failFast: true
 }
 
 baseConfig.reporterOptions.allure.useCucumberStepReporter = true
