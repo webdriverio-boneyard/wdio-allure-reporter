@@ -145,4 +145,4 @@ npm test
   ```
  This will generate a report (by default in ./allure-report), and open it in your browser
 
- Because before each test ./.alure-result folder is cleaned, so you should generate report only for one test by setting it in ./test/mocha.opts
+ Because the ./allure-report folder is cleaned before each test, you should configure the report for only one test by setting it in ./test/mocha.opts
